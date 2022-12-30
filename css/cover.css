@@ -38,7 +38,7 @@ body {
 }
 
 .cover-container {
-  max-width: 42em;
+  max-width: 65em;
 }
 
 
@@ -102,6 +102,7 @@ body {
 .lead{
   color: black;
   text-align: justify;
+  align-content: flex-start;
 }
 
 
@@ -111,3 +112,4 @@ body {
 .mastfoot {
   color: rgba(71, 69, 69, 0.5);
 }
+
