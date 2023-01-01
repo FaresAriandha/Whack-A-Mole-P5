@@ -11,4 +11,9 @@ body {
 	justify-content: center;
 	align-items: center;
 	overflow: hidden;
+	cursor: default;
+}
+
+body.changeCursor {
+	cursor: url("../img/palu-resize.png"), auto;
 }

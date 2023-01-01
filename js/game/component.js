@@ -1,13 +1,16 @@
 let isHover = false;
 let mole = [];
 let hole = [];
+let i = 0;
+let naik = false;
+
 
 function componentText(
 	str,
 	xPos,
 	yPos,
-	txtColor,
-	hoverColor,
+	txtColor = "grey",
+	hoverColor = "black",
 	txtSize,
 	scaleSize
 ) {
@@ -37,8 +40,8 @@ function componentButton(
 	wSize,
 	hSize,
 	rounded = 0,
-	sColor,
-	hoverColor,
+	sColor = "#fccc47",
+	hoverColor = "#ffc117",
 	scaleSize
 ) {
 	cursor(ARROW);
@@ -50,16 +53,25 @@ function componentButton(
 		mouseY > yPos - hSize / 2 &&
 		mouseY < yPos + hSize / 2
 	) {
-		// cursor(HAND);
 		fill(hoverColor);
 		wSize += scaleSize;
 		hSize += scaleSize;
 		isHover = true;
 	} else {
-		// resetWhenChangePage();
 		fill(sColor);
 	}
-	rect(xPos, yPos, wSize, hSize, rounded);
+	rect(
+		xPos,
+		yPos,
+		wSize,
+		hSize,
+		rounded + 5,
+		rounded + 15,
+		rounded + 5,
+		rounded + 15
+	);
+	wSize -= scaleSize;
+	hSize -= scaleSize;
 }
 
 function Tikus(img, xPos, yPos, height, width) {
@@ -67,41 +79,58 @@ function Tikus(img, xPos, yPos, height, width) {
 		this.xPos = xPos,
 		this.yPos = yPos,
 		this.height = height,
+		this.tmpX = xPos,
 		this.width = width,
-		this.transisiUp = 20;
-		
-
-		this.show = function () {
-			image(this.img, this.xPos, this.yPos, this.height, this.width);
-		};
-		
-		this.transisiMuncul = function () {
-			tint(255,255);
-			translate(0, -this.transisiUp);
-		}
-		
-		this.transisiDown = function () {
-			tint(255,0);
-			translate(0, this.transisiUp);
-		}
-		
-		mole.push(this);
-}
-
-function Tanah(img, xPos, yPos, height, width) {
-	this.img = img,
-	this.xPos = xPos,
-	this.yPos = yPos,
-	this.height = height,
-	this.width = width,
-	
+		this.tmpY = yPos,
+		this.transisiUp = 36;
 
 	this.show = function () {
-		translate(0,0);
 		image(this.img, this.xPos, this.yPos, this.height, this.width);
 	};
 
-	hole.push(this);
+	this.transisiMuncul = function () {
+		if (i == this.transisiUp) {
+			naik = true;
+			i = 0;
+			tint(255, 255);
+		}else{
+			this.yPos -= numberOfLevel;
+		}
+		i += numberOfLevel;
+		this.show();
+	};
+
+	this.transisiDown = function () {
+		tint(255, 255 - ( i * 20));
+		if (i == this.transisiUp) {
+			naik = false;
+			i = 0;
+			this.xPos = this.tmpX;
+			this.yPos = this.tmpY;
+			tint(255, 0);
+			randomPosition();
+		}else{
+			this.yPos += numberOfLevel;
+		}
+		this.show();
+		// console.log(i);
+		i += numberOfLevel;
+	};
+
+	mole.push(this);
 }
 
+function Tanah(img, xPos, yPos, height, width) {
+		this.img = img,
+		this.xPos = xPos,
+		this.yPos = yPos,
+		this.height = height,
+		this.width = width;
 
+		this.show = function (){
+			translate(0, 0);
+			image(this.img, this.xPos, this.yPos, this.height, this.width);
+		};
+
+	hole.push(this);
+}
