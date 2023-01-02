@@ -27,6 +27,7 @@ function setup() {
 }
 
 function draw() {
+	// finish = false;
 	// winOrLose();
 	switch (namePage) {
 		case "mainHome":
@@ -40,4 +41,5 @@ function draw() {
 		default:
 			break;
 	}
+	// mainPlay();
 }

@@ -1,24 +1,25 @@
-Boolean isHover = false;
+Boolean isHover = false, naik = false;
 ArrayList<Tikus> mole = new ArrayList<Tikus>();
 ArrayList<Tanah> hole = new ArrayList<Tanah>();
 String str; 
 color hoverColor, txtColor;
 float xPos, yPos, txtSize, scaleSize;
 int rounded = 0;
+int i = 0;
 
 
 class Tikus {
     PImage img;
-    float xPos, yPos,hSize,wSize, transisiUp = 20;
+    float xPos, yPos,hSize,wSize, transisiUp = 36, tmpX, tmpY;
     
     Tikus(PImage img, float xPos, float yPos, float hSize, float wSize){ 
       this.img = img;
       this.xPos = xPos;
+      this.tmpX = xPos;
       this.yPos = yPos;
+      this.tmpY = yPos;
       this.hSize = hSize;
       this.wSize = wSize;
-      //println("test");
-      //mole.add(this);
     }
     
 
@@ -27,13 +28,31 @@ class Tikus {
     };
     
     void transisiMuncul() {
-      tint(255,255);
-      translate(0, -this.transisiUp);
+      if (i == this.transisiUp) {
+        naik = true;
+        i = 0;
+        tint(255, 255);
+      } else {
+        this.yPos -= numberOfLevel;
+      }
+      i += numberOfLevel;
+      this.show();
     }
     
     void transisiDown() {
-      tint(255,0);
-      translate(0, this.transisiUp);
+      tint(255, 255 - i * 20);
+      if (i == this.transisiUp) {
+        naik = false;
+        i = 0;
+        this.xPos = this.tmpX;
+        this.yPos = this.tmpY;
+        tint(255, 0);
+        randomPosition();
+      } else {
+        this.yPos += numberOfLevel;
+      }
+      this.show();
+      i += numberOfLevel;
     }
     
     
@@ -63,6 +82,7 @@ void componentText(String str, float xPos, float yPos, color txtColor, color hov
   noStroke();
   if (isHover) {
     textSize(scaleSize + txtSize);
+    yPos += 2;
     fill(hoverColor);
     if (mousePressed == true && mouseButton == LEFT) {
       txtIsHover = str;
@@ -72,7 +92,7 @@ void componentText(String str, float xPos, float yPos, color txtColor, color hov
     textSize(txtSize);
     fill(txtColor);
   }
-  //int strWidth = textWidth(text);
+
   textAlign(CENTER, BOTTOM);
 
   text(str, xPos, yPos);
@@ -92,5 +112,5 @@ void componentButton(float xPos, float yPos, float wSize, float hSize, int round
   } else {
     fill(sColor);
   }
-  rect(xPos, yPos, wSize, hSize, rounded);
+  rect(xPos, yPos, wSize, hSize, rounded + 5, rounded + 15, rounded + 5, rounded + 15);
 }

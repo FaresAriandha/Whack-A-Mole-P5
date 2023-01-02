@@ -1,9 +1,8 @@
 let str,
 	strWidth,
 	padding = 10;
-let chTheme = theme;
 let tikusPositionX = (tanahPositionX = 170);
-let tikusPositionY = 80;
+let tikusPositionY = 70;
 let tanahPositionY = 80;
 let randomNumberBefore,
 	finish,
@@ -14,7 +13,7 @@ let a, mRandom, waktuTunggu;
 let shapeColor = "#fccc47",
 	shapeHoverColor = "#ffc117",
 	txtColor = "grey",
-	txtHoverColor = "dark";
+	txtHoverColor = "black";
 let level, isClick, music, timePlay;
 let intervalTime;
 
@@ -134,11 +133,9 @@ function mainPlay() {
 	rectMode(CENTER);
 	fill("#964B00");
 	rect(xCenter, yCenter, wLapangan, hLapangan);
-	
-	// Button Back
-	noStroke();
-	
+
 	// Komponen skor
+	noStroke();
 	fill(255);
 	rect(xCenter - 140, height - 70, 130, 50, 10, 50, 10, 50);
 	componentText("Skor", xCenter - 160, height - 70, 0, 0, 28, 5);
@@ -167,11 +164,6 @@ function changeCursor() {
 		mouseY >= yCenter - hLapangan / 2 &&
 		mouseY <= yCenter + hLapangan / 2
 	) {
-		// if (mouseIsPressed) {
-		// }
-		rotate((PI / 180) * 1.3);
-		image(palu, mouseX, mouseY, 65, 65);
-		rotate(0);
 		image(palu, mouseX, mouseY, 65, 65);
 	}
 }
@@ -198,7 +190,7 @@ function makeMole() {
 			new Tikus(
 				tikus,
 				xCenter - tikusPositionX + t * tikusPositionX,
-				yCenter - tikusPositionY,
+				yCenter - tikusPositionY - 10,
 				150,
 				80
 			);
@@ -245,7 +237,6 @@ function upAndDownShow() {
 		) {
 			naik = true;
 			skor++;
-			console.log("test");
 			bsPukul.play();
 		} else {
 			mRandom.transisiMuncul();
@@ -259,7 +250,7 @@ function setMusic() {
 
 	if (!music) {
 		localStorage.setItem("music", "Off");
-	} else if (isClick){
+	} else if (isClick) {
 		if (music == "Off") {
 			music = "On";
 		} else if (music == "On") {
@@ -276,7 +267,6 @@ function setMusic() {
 		bsGame.stop();
 	}
 	isClick = false;
-	return music;
 }
 
 function setLevel() {
@@ -284,7 +274,7 @@ function setLevel() {
 
 	if (!level) {
 		localStorage.setItem("level", "normal");
-	} else if (isClick){
+	} else if (isClick) {
 		if (level == "normal") {
 			level = "medium";
 		} else if (level == "medium") {
@@ -295,7 +285,7 @@ function setLevel() {
 		localStorage.setItem("level", level);
 	}
 
-	if (level == "normal") {			
+	if (level == "normal") {
 		numberOfLevel = 1;
 	} else if (level == "medium") {
 		numberOfLevel = 2;
@@ -303,7 +293,7 @@ function setLevel() {
 		numberOfLevel = 3;
 	}
 
-	console.log(numberOfLevel);
+	// console.log(numberOfLevel);
 	isClick = false;
 }
 
@@ -371,7 +361,7 @@ function rundownBeforePlay() {
 	textStyle(BOLD);
 	componentText(waktuTunggu, xCenter, yCenter, "#000000", "#000000", 40, 5);
 	waktuTunggu--;
-	console.log(waktuTunggu);
+	// console.log(waktuTunggu);
 	sleep(1000);
 }
 
