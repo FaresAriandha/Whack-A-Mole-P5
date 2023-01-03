@@ -14,7 +14,7 @@ let shapeColor = "#fccc47",
 	shapeHoverColor = "#ffc117",
 	txtColor = "grey",
 	txtHoverColor = "black";
-let level, isClick, music, timePlay;
+let level, isClick, isHoverMole, music, timePlay;
 let intervalTime;
 
 function mainHome() {
@@ -55,6 +55,8 @@ function mainHome() {
 function mainSetting() {
 	background(bgColor);
 	cursor(ARROW);
+
+	// Button Change Level
 	componentButton(
 		xCenter - 100,
 		yCenter - 30,
@@ -78,7 +80,7 @@ function mainSetting() {
 	rect(xCenter - 100, yCenter - 90, 100, 30, 7);
 	componentText(level, xCenter - 100, yCenter - 90, 0, 0, 20, 4);
 
-	// Add Sound
+	// Button Sound
 	componentButton(
 		xCenter + 100,
 		yCenter - 30,
@@ -101,6 +103,8 @@ function mainSetting() {
 	fill(255);
 	rect(xCenter + 100, yCenter - 90, 100, 30, 7);
 	componentText(music, xCenter + 100, yCenter - 90, 0, 0, 20, 4);
+
+	// Button Back
 	componentButton(
 		xCenter,
 		yCenter + 70,
@@ -117,6 +121,7 @@ function mainSetting() {
 function mainPlay() {
 	wLapangan = width * 0.6;
 	hLapangan = height * 0.6;
+
 	// Game Background
 	noStroke();
 	imageMode(CENTER);
@@ -153,9 +158,9 @@ function mainPlay() {
 	rect(xCenter, height - 70, 80, 50, 10, 50, 10, 50);
 	componentText(timePlay, xCenter, height - 70, 0, 0, 28, 5);
 
-	if (!finish) {
-		upAndDownShow();
-	}
+	// if (!finish) {
+	// 	upAndDownShow();
+	// }
 	renderHole();
 }
 
@@ -168,10 +173,10 @@ function changeCursor() {
 		mouseIsPressed
 	) {
 		rotate((PI / 180) * 1.3);
-		image(palu, mouseX, mouseY, 65, 65);
+		image(palu, mouseX, mouseY, 80, 80);
 	} else {
 		rotate(0);
-		image(palu, mouseX, mouseY, 65, 65);
+		image(palu, mouseX, mouseY, 80, 80);
 	}
 }
 
@@ -240,15 +245,12 @@ function upAndDownShow() {
 			mouseX >= mRandom.xPos - mRandom.width / 2 &&
 			mouseX <= mRandom.xPos + mRandom.width / 2 &&
 			mouseY >= mRandom.yPos - mRandom.height / 2 &&
-			mouseY <= mRandom.yPos + mRandom.height / 2 &&
-			mouseIsPressed
+			mouseY <= mRandom.yPos + mRandom.height / 2
 		) {
-			naik = true;
-			skor++;
-			// bsPukul.play();
+			isHoverMole = true;
 		} else {
 			mRandom.transisiMuncul(numberOfLevel);
-			bsPukul.stop();
+			naik = false;
 		}
 	}
 }
@@ -309,6 +311,13 @@ function mouseClicked() {
 	if (txtIsHover != "") {
 		bsClick.play();
 	}
+
+	if (isHoverMole && txtIsHover == "") {
+		bsPukul.play();
+		skor++;
+		naik = true;
+	}
+
 	switch (txtIsHover) {
 		case "Play":
 		case "Main Lagi":
@@ -333,6 +342,7 @@ function mouseClicked() {
 			setMusic();
 			break;
 		default:
+			txtIsHover = "";
 			break;
 	}
 	txtIsHover = "";
@@ -364,6 +374,7 @@ function gamePLay() {
 	}
 }
 
+// Komponen sebelum mulai setelah klik play
 function rundownBeforePlay() {
 	noStroke();
 	rectMode(CENTER);

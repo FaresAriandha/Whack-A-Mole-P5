@@ -9,15 +9,15 @@ body {
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
-	/* justify-content: space-between; */
-	/* align-items: center; */
+	justify-content: center;
+	align-items: center;
 	overflow: hidden;
 }
 
-main {
+/* main {
 	align-self: center;
 }
 
 footer {
 	align-self: center;
-}
+} */

@@ -11,10 +11,11 @@ let numberOfLevel = 1;
 function preload() {
 	tanah = loadImage("../../assets/tanah.png");
 	tikus = loadImage("../../assets/tikus.png");
-	palu = loadImage("../../assets/palu.png");
+	palu = loadImage("../../assets/palu2.png");
 	bsGame = loadSound("../../assets/BGM.mp3");
-	bsPukul = loadSound("../../assets/Pukul.mp3");
+	bsPukul = loadSound("../../assets/Pukul2.mp3");
 	bsClick = loadSound("../../assets/Tick.mp3");
+	// bsPukul.speed(2.0);
 }
 
 function setup() {
@@ -31,17 +32,17 @@ function setup() {
 function draw() {
 	// finish = false;
 	// winOrLose();
-	switch (namePage) {
-		case "mainHome":
-			mainHome();
-			break;
-		case "gamePlay":
-			gamePLay();
-			break;
-		case "mainSetting":
-			mainSetting();
-		default:
-			break;
-	}
-	// mainPlay();
+	// switch (namePage) {
+	// 	case "mainHome":
+	// 		mainHome();
+	// 		break;
+	// 	case "gamePlay":
+	// 		gamePLay();
+	// 		break;
+	// 	case "mainSetting":
+	// 		mainSetting();
+	// 	default:
+	// 		break;
+	// }
+	mainPlay();
 }

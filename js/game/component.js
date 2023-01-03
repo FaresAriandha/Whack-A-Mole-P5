@@ -27,7 +27,6 @@ function componentText(
 		textSize(txtSize);
 		fill(txtColor);
 	}
-	let strWidth = textWidth(text);
 	textAlign(CENTER, CENTER);
 
 	text(str, xPos, yPos);
@@ -82,7 +81,7 @@ function Tikus(img, xPos, yPos, height, width, levelShow) {
 		(this.width = width),
 		(this.tmpY = yPos),
 		(this.level = levelShow),
-		(this.transisiUp = 36);
+		(this.transisiUp = 24);
 
 	this.show = function () {
 		image(this.img, this.xPos, this.yPos, this.height, this.width);
