@@ -43,7 +43,6 @@ function componentButton(
 	hoverColor = "#ffc117",
 	scaleSize
 ) {
-	cursor(ARROW);
 	rectMode(CENTER);
 	let d = dist(xPos, yPos, mouseX, mouseY);
 	if (
@@ -56,6 +55,7 @@ function componentButton(
 		wSize += scaleSize;
 		hSize += scaleSize;
 		isHover = true;
+		cursor(HAND);
 	} else {
 		fill(sColor);
 	}
@@ -73,7 +73,7 @@ function componentButton(
 	hSize -= scaleSize;
 }
 
-function Tikus(img, xPos, yPos, height, width) {
+function Tikus(img, xPos, yPos, height, width, levelShow) {
 	(this.img = img),
 		(this.xPos = xPos),
 		(this.yPos = yPos),
@@ -81,13 +81,14 @@ function Tikus(img, xPos, yPos, height, width) {
 		(this.tmpX = xPos),
 		(this.width = width),
 		(this.tmpY = yPos),
+		(this.level = levelShow),
 		(this.transisiUp = 36);
 
 	this.show = function () {
 		image(this.img, this.xPos, this.yPos, this.height, this.width);
 	};
 
-	this.transisiMuncul = function () {
+	this.transisiMuncul = function (numberOfLevel) {
 		if (i == this.transisiUp) {
 			naik = true;
 			i = 0;
@@ -99,7 +100,7 @@ function Tikus(img, xPos, yPos, height, width) {
 		this.show();
 	};
 
-	this.transisiDown = function () {
+	this.transisiDown = function (numberOfLevel) {
 		tint(255, 255 - i * 20);
 		if (i == this.transisiUp) {
 			naik = false;

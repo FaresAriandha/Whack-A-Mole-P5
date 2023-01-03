@@ -19,6 +19,7 @@ let intervalTime;
 
 function mainHome() {
 	background(bgColor);
+	cursor(ARROW);
 	componentButton(
 		xCenter,
 		yCenter - 20,
@@ -53,6 +54,7 @@ function mainHome() {
 
 function mainSetting() {
 	background(bgColor);
+	cursor(ARROW);
 	componentButton(
 		xCenter - 100,
 		yCenter - 30,
@@ -162,8 +164,13 @@ function changeCursor() {
 		mouseX >= xCenter - wLapangan / 2 &&
 		mouseX <= xCenter + wLapangan / 2 &&
 		mouseY >= yCenter - hLapangan / 2 &&
-		mouseY <= yCenter + hLapangan / 2
+		mouseY <= yCenter + hLapangan / 2 &&
+		mouseIsPressed
 	) {
+		rotate((PI / 180) * 1.3);
+		image(palu, mouseX, mouseY, 65, 65);
+	} else {
+		rotate(0);
 		image(palu, mouseX, mouseY, 65, 65);
 	}
 }
@@ -227,19 +234,20 @@ function randomTime(min, max) {
 
 function upAndDownShow() {
 	if (naik) {
-		mRandom.transisiDown();
+		mRandom.transisiDown(numberOfLevel);
 	} else {
 		if (
 			mouseX >= mRandom.xPos - mRandom.width / 2 &&
 			mouseX <= mRandom.xPos + mRandom.width / 2 &&
 			mouseY >= mRandom.yPos - mRandom.height / 2 &&
-			mouseY <= mRandom.yPos + mRandom.height / 2
+			mouseY <= mRandom.yPos + mRandom.height / 2 &&
+			mouseIsPressed
 		) {
 			naik = true;
 			skor++;
-			bsPukul.play();
+			// bsPukul.play();
 		} else {
-			mRandom.transisiMuncul();
+			mRandom.transisiMuncul(numberOfLevel);
 			bsPukul.stop();
 		}
 	}
@@ -273,19 +281,19 @@ function setLevel() {
 	level = localStorage.getItem("level");
 
 	if (!level) {
-		localStorage.setItem("level", "normal");
+		localStorage.setItem("level", "easy");
 	} else if (isClick) {
-		if (level == "normal") {
+		if (level == "easy") {
 			level = "medium";
 		} else if (level == "medium") {
 			level = "hard";
 		} else if (level == "hard") {
-			level = "normal";
+			level = "easy";
 		}
 		localStorage.setItem("level", level);
 	}
 
-	if (level == "normal") {
+	if (level == "easy") {
 		numberOfLevel = 1;
 	} else if (level == "medium") {
 		numberOfLevel = 2;
@@ -298,6 +306,9 @@ function setLevel() {
 }
 
 function mouseClicked() {
+	if (txtIsHover != "") {
+		bsClick.play();
+	}
 	switch (txtIsHover) {
 		case "Play":
 		case "Main Lagi":
@@ -328,6 +339,7 @@ function mouseClicked() {
 }
 
 function gamePLay() {
+	cursor(ARROW);
 	if (waktuTunggu > -1) {
 		rundownBeforePlay();
 		if (waktuTunggu == 0) {

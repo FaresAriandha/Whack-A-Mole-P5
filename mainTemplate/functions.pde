@@ -4,9 +4,9 @@ int tikusPositionX = 170;
 int tanahPositionX = tikusPositionX;
 int tikusPositionY = 90; 
 int tanahPositionY = tikusPositionY;
-int randomNumberBefore, timePlay = 10;
+int randomNumberBefore, timePlay = 11;
 Boolean finish = false, a, isClick = false;
-int skor = 0, waktuMain = 10000, waktuTunggu;
+int skor = 0, waktuMain = 10000, waktuTunggu, countDown, startTime;
 color shapeColor = #fccc47,
   shapeHoverColor = #ffc117,
   TxtColor = #808080,
@@ -15,6 +15,7 @@ Tikus mRandom;
 
 void mainHome() {
   background(bgColor);
+  cursor(ARROW);
   componentButton(xCenter - 100,yCenter,150,60,5,shapeColor,shapeHoverColor,15);
   componentText("Play", xCenter - 100, yCenter + 15, TxtColor, txtHoverColor, 28, 5);
   componentButton(xCenter + 100,yCenter,150,60,5,shapeColor,shapeHoverColor,15);
@@ -23,7 +24,7 @@ void mainHome() {
 
 void mainSetting() {
   background(bgColor);
-  
+  cursor(ARROW);
   // Set Level
   componentButton(xCenter - 120, yCenter - 30,180,60,5, shapeColor, shapeHoverColor, 18);
   componentText("Change Level",xCenter - 120,yCenter - 15,TxtColor,txtHoverColor,28,4);
@@ -82,7 +83,7 @@ void mainPlay() {
   // Komponen waktu
   fill(255);
   rect(xCenter, height - 70, 80, 50, 10, 50, 10, 50);
-  componentText(str(timePlay), xCenter, height - 55, 0, 0, 28, 5);
+  componentText(str(countDown), xCenter, height - 55, 0, 0, 28, 5);
   
   if (!finish) {
     upAndDownShow();
@@ -118,7 +119,6 @@ void randomPosition() {
   }
   randomNumberBefore = r;
   mRandom = mole.get(r);
-  print(mRandom);
 }
 
 int randomTime(int min, int max) {
@@ -127,20 +127,20 @@ int randomTime(int min, int max) {
 
 void upAndDownShow() {
   if (naik) {
-    mRandom.transisiDown();
+    mRandom.transisiDown(numberOfLevel);
   } else {
     if (
       mouseX >= mRandom.xPos - mRandom.wSize / 2 &&
       mouseX <= mRandom.xPos + mRandom.wSize / 2 &&
       mouseY >= mRandom.yPos - mRandom.hSize / 2 &&
-      mouseY <= mRandom.yPos + mRandom.hSize / 2
+      mouseY <= mRandom.yPos + mRandom.hSize / 2 &&
+      mousePressed
     ) {
       naik = true;
-      skor++;
       bsPukul.play();
+      skor++;
     } else {
-      mRandom.transisiMuncul();
-      bsPukul.stop();
+      mRandom.transisiMuncul(numberOfLevel);
     }
   }
 }
@@ -191,6 +191,9 @@ if (level == "normal") {
 
 
 void mouseClicked() {
+  if(txtIsHover != ""){
+    bsClick.play();
+  }
    switch (txtIsHover) {
     case "Play":
     case "Main Lagi":
@@ -222,11 +225,13 @@ void mouseClicked() {
 }
 
 void gamePlay() {
+  cursor(ARROW);
   if (waktuTunggu > -1) {
     rundownBeforePlay();
     if (waktuTunggu == 0) {
-      timePlay = 11;
-      //playingTime();
+      countDown = 0;
+      startTime = millis()/1000;
+      playingTime();
     }
   } else {
     if (a) {
@@ -234,12 +239,13 @@ void gamePlay() {
       randomPosition();
       a = false;
     }
-    cursor(ARROW);
+    if(countDown > 0){
+      playingTime();
+    }
     mainPlay();
-    if (skor == 10) {
+    if (countDown <= 0) {
       winOrLose();
       finish = true;
-      //clearInterval(intervalTime);
     } else {
       changeCursor();
     }
@@ -252,22 +258,20 @@ void rundownBeforePlay() {
   fill(0, 0, 255);
   rect(xCenter, yCenter, width, height);
   fill(0);
-  //textStyle(BOLD);
   componentText(str(waktuTunggu), xCenter, yCenter, #000000, #000000, 40, 5);
   waktuTunggu = int(waktuTunggu);
   waktuTunggu--;
-  // console.log(waktuTunggu);
   delay(1000);
 }
 
-//void playingTime() {
-//  intervalTime = setInterval(() => {
-//    timePlay--;
-//  }, 1000);
-//}
+void playingTime() {
+  int ms = millis()/1000;
+  countDown = timePlay - (ms - startTime); 
+}
 
 void winOrLose() {
-  // overlay
+  
+  // Overlay
   rectMode(CENTER);
   stroke(0);
   strokeWeight(5);
@@ -300,13 +304,3 @@ void changeCursor() {
     image(palu, mouseX, mouseY, 65, 65);
   }
 }
-
-// Sleep Function
-//void delaySleep(milliseconds) {
-//  var start = new Date().getTime();
-//  for (var i = 0; i < 1e7; i++) {
-//    if (new Date().getTime() - start > milliseconds) {
-//      break;
-//    }
-//  }
-//}

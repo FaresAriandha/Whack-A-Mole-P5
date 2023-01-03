@@ -1,10 +1,10 @@
 import processing.sound.*;
 SoundFile bsGame;
 SoundFile bsPukul;
+SoundFile bsClick;
 String txtIsHover;
 String namePage = "mainHome";
 float xCenter, yCenter;
-String theme = "dark";
 float bgColor = 128;
 PImage tikus, tanah, palu;
 float ukuranTikus = 100;
@@ -19,6 +19,7 @@ void setup() {
   palu = loadImage("assets/palu.png");
   bsGame = new SoundFile(this, "assets/BGM.mp3");
   bsPukul = new SoundFile(this, "assets/Pukul.mp3");
+  bsClick = new SoundFile(this, "assets/Tick.mp3");
   setLevel();
   setMusic();
   xCenter = width / 2;
@@ -39,5 +40,6 @@ void draw() {
     default:
       break;
   }
+  //playingTime();
   //image(tanah, 200, 200);
 }

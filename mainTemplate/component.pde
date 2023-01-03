@@ -27,7 +27,7 @@ class Tikus {
       image(this.img, this.xPos, this.yPos, this.hSize, this.wSize);
     };
     
-    void transisiMuncul() {
+    void transisiMuncul(int numberOfLevel) {
       if (i == this.transisiUp) {
         naik = true;
         i = 0;
@@ -39,7 +39,7 @@ class Tikus {
       this.show();
     }
     
-    void transisiDown() {
+    void transisiDown(int numberOfLevel) {
       tint(255, 255 - i * 20);
       if (i == this.transisiUp) {
         naik = false;
@@ -84,7 +84,7 @@ void componentText(String str, float xPos, float yPos, color txtColor, color hov
     textSize(scaleSize + txtSize);
     yPos += 2;
     fill(hoverColor);
-    if (mousePressed == true && mouseButton == LEFT) {
+    if (mousePressed && mouseButton == LEFT) {
       txtIsHover = str;
     }
     isHover = false;
@@ -96,10 +96,11 @@ void componentText(String str, float xPos, float yPos, color txtColor, color hov
   textAlign(CENTER, BOTTOM);
 
   text(str, xPos, yPos);
+  
 }
 
 void componentButton(float xPos, float yPos, float wSize, float hSize, int rounded, color sColor, color hoverColor, int scaleSize) {
-  cursor(ARROW);
+  
   rectMode(CENTER);
   float d = dist(xPos, yPos, mouseX, mouseY);
   
@@ -109,6 +110,7 @@ void componentButton(float xPos, float yPos, float wSize, float hSize, int round
     wSize += scaleSize;
     hSize += scaleSize;
     isHover = true;
+    cursor(HAND);
   } else {
     fill(sColor);
   }
