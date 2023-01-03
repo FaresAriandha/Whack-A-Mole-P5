@@ -1,4 +1,11 @@
-// Template untuk p5.js
+function preload() {
+	tanah = loadImage("../../assets/tanah.png");
+	tikus = loadImage("../../assets/tikus.png");
+	palu = loadImage("../../assets/palu.png");
+	bsGame = loadSound("../../assets/BGM.mp3");
+	bsPukul = loadSound("../../assets/Pukul.mp3");
+}
+
 function setup() {
 	createCanvas(900, 600);
 	imageMode(CENTER);
@@ -10,6 +17,8 @@ function setup() {
 }
 
 function draw() {
+	// finish = false;
+	// winOrLose();
 	switch (namePage) {
 		case "mainHome":
 			mainHome();
@@ -22,4 +31,5 @@ function draw() {
 		default:
 			break;
 	}
+	// mainPlay();
 }

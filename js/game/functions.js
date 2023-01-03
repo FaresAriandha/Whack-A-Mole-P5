@@ -1,9 +1,8 @@
 let str,
 	strWidth,
 	padding = 10;
-let chTheme = theme;
 let tikusPositionX = (tanahPositionX = 170);
-let tikusPositionY = 80;
+let tikusPositionY = 70;
 let tanahPositionY = 80;
 let randomNumberBefore,
 	finish,
@@ -14,12 +13,13 @@ let a, mRandom, waktuTunggu;
 let shapeColor = "#fccc47",
 	shapeHoverColor = "#ffc117",
 	txtColor = "grey",
-	txtHoverColor = "dark";
+	txtHoverColor = "black";
 let level, isClick, music, timePlay;
 let intervalTime;
 
 function mainHome() {
 	background(bgColor);
+	cursor(ARROW);
 	componentButton(
 		xCenter,
 		yCenter - 20,
@@ -54,6 +54,7 @@ function mainHome() {
 
 function mainSetting() {
 	background(bgColor);
+	cursor(ARROW);
 	componentButton(
 		xCenter - 100,
 		yCenter - 30,
@@ -134,11 +135,9 @@ function mainPlay() {
 	rectMode(CENTER);
 	fill("#964B00");
 	rect(xCenter, yCenter, wLapangan, hLapangan);
-	
-	// Button Back
-	noStroke();
-	
+
 	// Komponen skor
+	noStroke();
 	fill(255);
 	rect(xCenter - 140, height - 70, 130, 50, 10, 50, 10, 50);
 	componentText("Skor", xCenter - 160, height - 70, 0, 0, 28, 5);
@@ -165,12 +164,12 @@ function changeCursor() {
 		mouseX >= xCenter - wLapangan / 2 &&
 		mouseX <= xCenter + wLapangan / 2 &&
 		mouseY >= yCenter - hLapangan / 2 &&
-		mouseY <= yCenter + hLapangan / 2
+		mouseY <= yCenter + hLapangan / 2 &&
+		mouseIsPressed
 	) {
-		// if (mouseIsPressed) {
-		// }
 		rotate((PI / 180) * 1.3);
 		image(palu, mouseX, mouseY, 65, 65);
+	} else {
 		rotate(0);
 		image(palu, mouseX, mouseY, 65, 65);
 	}
@@ -198,7 +197,7 @@ function makeMole() {
 			new Tikus(
 				tikus,
 				xCenter - tikusPositionX + t * tikusPositionX,
-				yCenter - tikusPositionY,
+				yCenter - tikusPositionY - 10,
 				150,
 				80
 			);
@@ -235,20 +234,20 @@ function randomTime(min, max) {
 
 function upAndDownShow() {
 	if (naik) {
-		mRandom.transisiDown();
+		mRandom.transisiDown(numberOfLevel);
 	} else {
 		if (
 			mouseX >= mRandom.xPos - mRandom.width / 2 &&
 			mouseX <= mRandom.xPos + mRandom.width / 2 &&
 			mouseY >= mRandom.yPos - mRandom.height / 2 &&
-			mouseY <= mRandom.yPos + mRandom.height / 2
+			mouseY <= mRandom.yPos + mRandom.height / 2 &&
+			mouseIsPressed
 		) {
 			naik = true;
 			skor++;
-			console.log("test");
-			bsPukul.play();
+			// bsPukul.play();
 		} else {
-			mRandom.transisiMuncul();
+			mRandom.transisiMuncul(numberOfLevel);
 			bsPukul.stop();
 		}
 	}
@@ -259,7 +258,7 @@ function setMusic() {
 
 	if (!music) {
 		localStorage.setItem("music", "Off");
-	} else if (isClick){
+	} else if (isClick) {
 		if (music == "Off") {
 			music = "On";
 		} else if (music == "On") {
@@ -276,26 +275,25 @@ function setMusic() {
 		bsGame.stop();
 	}
 	isClick = false;
-	return music;
 }
 
 function setLevel() {
 	level = localStorage.getItem("level");
 
 	if (!level) {
-		localStorage.setItem("level", "normal");
-	} else if (isClick){
-		if (level == "normal") {
+		localStorage.setItem("level", "easy");
+	} else if (isClick) {
+		if (level == "easy") {
 			level = "medium";
 		} else if (level == "medium") {
 			level = "hard";
 		} else if (level == "hard") {
-			level = "normal";
+			level = "easy";
 		}
 		localStorage.setItem("level", level);
 	}
 
-	if (level == "normal") {			
+	if (level == "easy") {
 		numberOfLevel = 1;
 	} else if (level == "medium") {
 		numberOfLevel = 2;
@@ -303,11 +301,14 @@ function setLevel() {
 		numberOfLevel = 3;
 	}
 
-	console.log(numberOfLevel);
+	// console.log(numberOfLevel);
 	isClick = false;
 }
 
 function mouseClicked() {
+	if (txtIsHover != "") {
+		bsClick.play();
+	}
 	switch (txtIsHover) {
 		case "Play":
 		case "Main Lagi":
@@ -338,6 +339,7 @@ function mouseClicked() {
 }
 
 function gamePLay() {
+	cursor(ARROW);
 	if (waktuTunggu > -1) {
 		rundownBeforePlay();
 		if (waktuTunggu == 0) {
@@ -371,7 +373,7 @@ function rundownBeforePlay() {
 	textStyle(BOLD);
 	componentText(waktuTunggu, xCenter, yCenter, "#000000", "#000000", 40, 5);
 	waktuTunggu--;
-	console.log(waktuTunggu);
+	// console.log(waktuTunggu);
 	sleep(1000);
 }
 
