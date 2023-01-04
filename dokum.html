@@ -96,6 +96,7 @@
             </h2>
             <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
               <div class="accordion-body">
+                <strong>setup()</strong> merupakan function yang mana fungsinya, yakni mengatur size display window dan letaknya, memuat game beserta sound game.
                 <div class="container mt-10">
                   <div class="container-sm rounded-3 text-xl text-bg-light font-weight-bold">
                     <pre><code>function setup() {</code></pre>
@@ -126,6 +127,8 @@
             </h2>
             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
               <div class="accordion-body">
+                <strong>draw()</strong> adalah fungsi yang akan dieksekusi berkali-kali oleh program, dan baru akan berhenti ketika Display Window ditutup atau tombol Stop ditekan. 
+                Dalam function ini terdapat percabangan yang mana dalam tiap cabangnya akan memanggil function-function lainnya.
                 <div class="mt-10">
                   <div class="container rounded-3 mt-3 text-xl text-bg-light font-weight-bold">
                     <pre data-prefix=""><code>void draw() {</code></pre>
@@ -155,6 +158,8 @@
             </h2>
             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
               <div class="accordion-body">
+                <strong>mainHome()</strong> adalah fungsi yang digunakan untuk mengatur tampilan awal atau landing page dari game. Dalam fungsi ini mengatur background color dan posisi
+                warna(saat ditekan maupun tidak), serta ukuran dari 2 button yang ada di dalamnya.
                 <div class="mt-10">
                   <div class="container rounded-3 my-4 mt-3 text-xl text-bg-light font-weight-bold">
                     <pre data-prefix=""><code>void mainHome() {</code></pre>
@@ -178,6 +183,8 @@
             </h2>
             <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
               <div class="accordion-body">
+                <strong>mainSetting()</strong> adalah fungsi yang digunakan untuk mengatur tampilan dari halaman setting game. Pada halaman ini, hal-hal yang bisa diatur
+                atau set adalah level dan sound permainan. 
                 <div class="mt-10">
                   <div class="container rounded-3 my-4 mt-3 text-xl text-bg-light font-weight-bold">
                     <pre data-prefix=""><code>void mainSetting() {</code></pre>
@@ -212,6 +219,8 @@
             </h2>
             <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
               <div class="accordion-body">
+                <strong>mainPlay()</strong> adalah fungsi yang digunakan untuk mengatur tampilan saat game dimainkan. Dalam fungsi ini mengatur ukuran dan posisi dari 
+                background image, tampilan font style, tampilan section level, tampilan section skor, dan tampilan section waktu.
                 <div class="mt-10">
                   <div class="container rounded-3 my-4 mt-3 text-xl text-bg-light font-weight-bold">
                     <pre data-prefix=""><code>void mainPlay() {</code></pre>
@@ -266,6 +275,9 @@
             </h2>
             <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
               <div class="accordion-body">
+                <strong>upAndDownShow()</strong> adalah fungsi yang digunakan untuk mengatur transisi dari objek tikus. Transisi ini terjadi saat tikus muncul 
+                secara acak dan saat tikus dipukul. Fungsi ini nantinya akan memanggil fungsi yang berhubungan dengan transisi dari objek tikus, yakni 
+                fungsi transisiMuncul() dan transisiDown().
                 <div class="mt-10">
                   <div class="container rounded-3 my-4 mt-3 text-xl text-bg-light font-weight-bold">
                     <pre data-prefix=""><code>void upAndDownShow() {</code></pre>
@@ -300,6 +312,10 @@
             </h2>
             <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
               <div class="accordion-body">
+                <strong>gamePlay()</strong> adalah fungsi yang digunakan untuk saat game dimainkan. Sebelum game dimulai, fungsi ini akan memanggil 
+                fungsi rundownBeforePlay() yang berfungsi untuk menampilkan waktu hitung mundur dan saat dimulai akan memanggil fungsi playingTime() 
+                yang berfungsi untuk menampilkan timer. Selain itu, saat game dimulai juga akan menjalankan fungsi randomPosition() yang mana akan 
+                diaplikasikan pada objek tikus untuk memilih lokasi muncul dari tanah secara acak.
                 <div class="mt-10">
                   <div class="container rounded-3 my-4 mt-3 text-xl text-bg-light font-weight-bold">
                     <pre data-prefix=""><code>void gamePlay() {</code></pre>
