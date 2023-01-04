@@ -128,20 +128,20 @@
               <div class="accordion-body">
                 <div class="mt-10">
                   <div class="container rounded-3 mt-3 text-xl text-bg-light font-weight-bold">
-                    <pre data-prefix="1"><code>void draw() {</code></pre>
-                    <pre data-prefix="2"><code>  switch (namePage) {</code></pre>
-                    <pre data-prefix="3"><code>   case "mainHome":</code></pre>
-                    <pre data-prefix="4"><code>     mainHome();</code></pre>
-                    <pre data-prefix="5"><code>     break;</code></pre>
-                    <pre data-prefix="6"><code>   case "gamePlay":</code></pre>
-                    <pre data-prefix="7"><code>    gamePlay();</code></pre>
-                    <pre data-prefix="8"><code>    break;</code></pre>
-                    <pre data-prefix="9"><code>   case "mainSetting":</code></pre>
-                    <pre data-prefix="10"><code>    mainSetting();</code></pre>
-                    <pre data-prefix="28"><code>  default:</code></pre>
-                    <pre data-prefix="29"><code>    break;</code></pre>
-                    <pre data-prefix="30"><code>  }</code></pre>
-                    <pre data-prefix="31"><code>}</code></pre>
+                    <pre data-prefix=""><code>void draw() {</code></pre>
+                    <pre data-prefix=""><code>  switch (namePage) {</code></pre>
+                    <pre data-prefix=""><code>   case "mainHome":</code></pre>
+                    <pre data-prefix=""><code>     mainHome();</code></pre>
+                    <pre data-prefix=""><code>     break;</code></pre>
+                    <pre data-prefix=""><code>   case "gamePlay":</code></pre>
+                    <pre data-prefix=""><code>    gamePlay();</code></pre>
+                    <pre data-prefix=""><code>    break;</code></pre>
+                    <pre data-prefix=""><code>   case "mainSetting":</code></pre>
+                    <pre data-prefix=""><code>    mainSetting();</code></pre>
+                    <pre data-prefix=""><code>  default:</code></pre>
+                    <pre data-prefix=""><code>    break;</code></pre>
+                    <pre data-prefix=""><code>  }</code></pre>
+                    <pre data-prefix=""><code>}</code></pre>
                   </div>
                 </div>
               </div>
@@ -336,6 +336,178 @@
           </div>
         </div>
       </div>
+
+      <h3 class="cover-heading my-5">The Components</h3>
+
+      <div class="container mt-10">
+      <div class="accordion my-1" id="accordionExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+              componentButton()
+            </button>
+          </h2>
+          <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>componentButton()</strong> berfungsi untuk mengatur tampilan dari setiap tombol yang digunakan dalam permainan. Tampilan yang dimaksud seperti letak, ukuran, warna saat ditekan, serta posisi.
+              <div class="mt-10">
+                <div class="container rounded-3 mt-3 text-xl text-bg-light font-weight-bold">
+                  <pre data-prefix="1"><code>void componentButton(float xPos, float yPos, float wSize, float hSize, int rounded, color sColor, 
+                    color hoverColor, int scaleSize) {</code></pre>
+                  <pre data-prefix=""><code></code></pre>
+                  <pre data-prefix=""><code>  rectMode(CENTER);</code></pre>
+                  <pre data-prefix=""><code>  float d = dist(xPos, yPos, mouseX, mouseY);</code></pre>
+                  <pre data-prefix=""><code></code></pre>
+                  <pre data-prefix=""><code>   if (d < wSize && d < hSize && mouseY > yPos - hSize / 2 && mouseY < yPos + hSize / 2) {</code></pre>
+                  <pre data-prefix=""><code>    fill(hoverColor);</code></pre>
+                  <pre data-prefix=""><code>    wSize += scaleSize;</code></pre>
+                  <pre data-prefix=""><code>    isHover = true;</code></pre>
+                  <pre data-prefix=""><code>    cursor(HAND);</code></pre>
+                  <pre data-prefix=""><code>   } else {</code></pre>
+                  <pre data-prefix=""><code>     fill(sColor);</code></pre>
+                  <pre data-prefix=""><code>   }</code></pre>
+                  <pre data-prefix=""><code>   rect(xPos, yPos, wSize, hSize, rounded + 5, rounded + 15, rounded + 5, rounded + 15);</code></pre>
+                  <pre data-prefix=""><code>}</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+              componentText()
+            </button>
+          </h2>
+          <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>componentText()</strong> berfungsi untuk mengatur tampilan dari setiap kata yang ada dalam permainan, baik paragraf biasa, maupun kata dalam tombol. 
+              Tampilan yang dimaksud seperti letak, ukuran, warna saat ditekan, serta posisi.
+              <div class="mt-10">
+                <div class="container rounded-3 my-4 mt-3 text-xl text-bg-light font-weight-bold">
+                  <pre data-prefix=""><code>void componentText(String str, float xPos, float yPos, color txtColor, color hoverColor, 
+                    float txtSize, float scaleSize) {</code></pre>
+                  <pre data-prefix=""><code> noStroke();</code></pre>
+                  <pre data-prefix=""><code> if (isHover) {</code></pre>
+                  <pre data-prefix=""><code>   textSize(scaleSize + txtSize);</code></pre>
+                  <pre data-prefix=""><code>   yPos += 2;</code></pre>
+                  <pre data-prefix=""><code>   fill(hoverColor);</code></pre>
+                  <pre data-prefix=""><code>   if (mousePressed && mouseButton == LEFT) {</code></pre>
+                  <pre data-prefix=""><code>     txtIsHover = str;</code></pre>
+                  <pre data-prefix=""><code>   }</code></pre>
+                  <pre data-prefix=""><code>   isHover = false;</code></pre>
+                  <pre data-prefix=""><code> } else {</code></pre>
+                  <pre data-prefix=""><code>   textSize(txtSize);</code></pre>
+                  <pre data-prefix=""><code>   fill(txtColor);</code></pre>
+                  <pre data-prefix=""><code> }</code></pre>
+                  <pre data-prefix=""><code></code></pre>
+                  <pre data-prefix=""><code> textAlign(CENTER, BOTTOM);</code></pre>
+                  <pre data-prefix=""><code> text(str, xPos, yPos);</code></pre>
+                  <pre data-prefix=""><code>}</code></pre> 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+              class Tikus
+            </button>
+          </h2>
+          <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>Class Tikus</strong> merupakan class yang diaplikasikan untuk objek tikus atau <i>mole</i> dalam game. Dalam class ini terdapat beberapa function,
+              seperti show(), transisiMuncul(), dan transisiDown(). Tiap function tersebut memiliki fungsi yang berbeda, yakni untuk menampilkan objek tikus, tampilan tikus 
+              saat keluar dari lubang dan masuk ke lubang saat dipukul. Class ini juga digunakan untuk mengatur gambar atau image dari tikus, ukurannya, dan juga posisinya.
+              <div class="mt-10">
+                <div class="container rounded-3 my-4 mt-3 text-xl text-bg-light font-weight-bold">
+                  <pre data-prefix=""><code>class Tikus {</code></pre>
+                  <pre data-prefix=""><code> PImage img;</code></pre>
+                  <pre data-prefix=""><code> float xPos, yPos,hSize,wSize, transisiUp = 36, tmpX, tmpY;</code></pre>
+                  <pre data-prefix=""><code></code></pre>
+                  <pre data-prefix=""><code> Tikus(PImage img, float xPos, float yPos, float hSize, float wSize){ </code></pre>
+                  <pre data-prefix=""><code>  this.img = img;</code></pre>
+                  <pre data-prefix=""><code>  this.xPos = xPos;</code></pre>
+                  <pre data-prefix=""><code>  this.tmpX = xPos;</code></pre>
+                  <pre data-prefix=""><code>  this.yPos = yPos;</code></pre>
+                  <pre data-prefix=""><code>  this.tmpY = yPos;</code></pre>
+                  <pre data-prefix=""><code>  this.hSize = hSize;</code></pre>
+                  <pre data-prefix=""><code> }</code></pre>
+                  <pre data-prefix=""><code></code></pre>
+                  <pre data-prefix=""><code> void show() {</code></pre>
+                  <pre data-prefix=""><code>  image(this.img, this.xPos, this.yPos, this.hSize, this.wSize);</code></pre>
+                  <pre data-prefix=""><code> };</code></pre>
+                  <pre data-prefix=""><code></code></pre>
+                  <pre data-prefix=""><code> void transisiMuncul(int numberOfLevel) {</code></pre>
+                  <pre data-prefix=""><code>  if (i == this.transisiUp) {</code></pre>
+                  <pre data-prefix=""><code>    naik = true;</code></pre>
+                  <pre data-prefix=""><code>    i = 0;</code></pre>
+                  <pre data-prefix=""><code>    tint(255, 255);</code></pre>
+                  <pre data-prefix=""><code>  } else {</code></pre>
+                  <pre data-prefix=""><code>    this.yPos -= numberOfLevel;</code></pre>
+                  <pre data-prefix=""><code>  }</code></pre>
+                  <pre data-prefix=""><code>  i += numberOfLevel;</code></pre>
+                  <pre data-prefix=""><code>  this.show();</code></pre>
+                  <pre data-prefix=""><code> }</code></pre>
+                  <pre data-prefix=""><code></code></pre>
+                  <pre data-prefix=""><code> void transisiDown(int numberOfLevel) {</code></pre>
+                  <pre data-prefix=""><code>  tint(255, 255 - i * 20);</code></pre>
+                  <pre data-prefix=""><code>  if (i == this.transisiUp) {</code></pre>
+                  <pre data-prefix=""><code>    naik = false;</code></pre>
+                  <pre data-prefix=""><code>    i = 0;</code></pre>
+                  <pre data-prefix=""><code>    this.xPos = this.tmpX;</code></pre>
+                  <pre data-prefix=""><code>    this.yPos = this.tmpY;</code></pre>
+                  <pre data-prefix=""><code>    tint(255, 0);</code></pre>
+                  <pre data-prefix=""><code>    randomPosition();</code></pre>
+                  <pre data-prefix=""><code>  } else {</code></pre>
+                  <pre data-prefix=""><code>    this.yPos += numberOfLevel;</code></pre>
+                  <pre data-prefix=""><code>  }</code></pre> 
+                  <pre data-prefix=""><code>  this.show();</code></pre>
+                  <pre data-prefix=""><code>  i += numberOfLevel;</code></pre>
+                  <pre data-prefix=""><code> }</code></pre>
+                  <pre data-prefix=""><code>}</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+              class Tanah
+            </button>
+          </h2>
+          <div id="collapseEleven" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>Class Tanah</strong> merupakan class yang diaplikasikan untuk objek tanah dalam game. Dalam class ini terdapat function
+              show() yang berfungsi untuk menampilkan objek tanah itu sendiri. Class ini juga digunakan untuk mengatur gambar atau image dari tanah, ukurannya, dan juga posisinya.
+              <div class="mt-10">
+                <div class="container rounded-3 my-4 mt-3 text-xl text-bg-light font-weight-bold">
+                  <pre data-prefix=""><code>class Tanah {</code></pre>
+                  <pre data-prefix=""><code> PImage img;</code></pre>
+                  <pre data-prefix=""><code> Tanah(PImage img, float xPos, float yPos, float hSize, float wSize){ </code></pre>
+                  <pre data-prefix=""><code>  this.img = img;</code></pre>
+                  <pre data-prefix=""><code>  this.xPos = xPos;</code></pre>
+                  <pre data-prefix=""><code>  this.yPos = yPos;</code></pre>
+                  <pre data-prefix=""><code>  this.hSize = hSize;</code></pre>
+                  <pre data-prefix=""><code>  this.wSize = wSize;</code></pre>
+                  <pre data-prefix=""><code> }</code></pre>
+                  <pre data-prefix=""><code></code></pre>
+                  <pre data-prefix=""><code> void show() {</code></pre>
+                  <pre data-prefix=""><code>  image(this.img, this.xPos, this.yPos, this.hSize, this.wSize);</code></pre>
+                  <pre data-prefix=""><code> };</code></pre>
+                  <pre data-prefix=""><code>}</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>  
+      </div>
+    </div>
     </div>
   </div>
 </main>
