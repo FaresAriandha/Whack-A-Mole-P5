@@ -32,17 +32,17 @@ function setup() {
 function draw() {
 	// finish = false;
 	// winOrLose();
-	// switch (namePage) {
-	// 	case "mainHome":
-	// 		mainHome();
-	// 		break;
-	// 	case "gamePlay":
-	// 		gamePLay();
-	// 		break;
-	// 	case "mainSetting":
-	// 		mainSetting();
-	// 	default:
-	// 		break;
-	// }
-	mainPlay();
+	switch (namePage) {
+		case "mainHome":
+			mainHome();
+			break;
+		case "gamePlay":
+			gamePLay();
+			break;
+		case "mainSetting":
+			mainSetting();
+		default:
+			break;
+	}
+	// mainPlay();
 }

@@ -158,9 +158,9 @@ function mainPlay() {
 	rect(xCenter, height - 70, 80, 50, 10, 50, 10, 50);
 	componentText(timePlay, xCenter, height - 70, 0, 0, 28, 5);
 
-	// if (!finish) {
-	// 	upAndDownShow();
-	// }
+	if (!finish) {
+		upAndDownShow();
+	}
 	renderHole();
 }
 
