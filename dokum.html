@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Whack A Mole</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+		<link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/cover/">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-icons.css" rel="stylesheet">
+		<style>
+			.bd-placeholder-img {
+			  font-size: 1.125rem;
+			  text-anchor: middle;
+			  -webkit-user-select: none;
+			  -moz-user-select: none;
+			  -ms-user-select: none;
+			  user-select: none;
+			}
+	  
+			@media (min-width: 768px) {
+			  .bd-placeholder-img-lg {
+				font-size: 3.5rem;
+			  }
+			}
+      .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+		</style>
+		<link href="css/cover.css" rel="stylesheet">
+		<title>Whack A Mole</title>
+  </head>
+  <body class="text-black">
+    <main class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+			<header class="masthead mb-auto">
+			  <div class="inner">
+				<h3 class="masthead-brand">Whack A Mole</h3>
+				<nav class="nav nav-masthead justify-content-center">
+				  <a class="nav-link" href="index.html">Home</a>
+				  <a class="nav-link" href="game.html">Game</a>
+				  <a class="nav-link active" href="dokum.html">Dokumentasi</a>
+				  <a class="nav-link" href="aboutUs.html">About Us</a>
+				</nav>
+			  </div>
+			</header>
+
+      <main role="main" class="inner cover my-5">
+        <!-- overview -->
+        <h3 class="cover-heading">Function Used</h3>
+        
+        <div class="container mt-10">
+        <h4 class="text-lg mt-3 my-4 border-bottom">p5.js Libraries :</h4>
+
+        <div class="accordion my-2" id="accordionExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                setup()
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <strong>setup()</strong> merupakan function yang mana fungsinya, yakni mengatur size display window dan letaknya, memuat game beserta sound game.
+                <div class="container mt-10 my-3">
+                  <div class="container-sm rounded-3 text-xl text-bg-light font-weight-bold">
+                    <pre><code>function setup() {</code></pre>
+                    <pre><code>   createCanvas(900, 600);</code></pre>
+                    <pre><code>   imageMode(CENTER);</code></pre>
+                    <pre><code>   bsGame.loop();</code></pre>
+                    <pre><code>   setLevel();</code></pre>
+                    <pre><code>   setMusic();</code></pre>
+                    <pre><code>   xCenter = width / 2;</code></pre>
+                    <pre><code>   yCenter = height / 2;</code></pre>
+                    <pre><code>   makeMole();</code></pre>
+                    <pre><code>}</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <h4 class="text-lg mt-3 my-4 border-bottom">Processing :</h4>
+
+        <div class="accordion" id="accordionExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                draw()
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <strong>draw()</strong> adalah fungsi yang akan dieksekusi berkali-kali oleh program, dan baru akan berhenti ketika Display Window ditutup atau tombol Stop ditekan. 
+                Dalam function ini terdapat percabangan yang mana dalam tiap cabangnya akan memanggil function-function lainnya.
+                <div class="mt-10">
+                  <div class="container rounded-3 mt-3 text-xl text-bg-light font-weight-bold">
+                    <pre data-prefix=""><code>void draw() {</code></pre>
+                    <pre data-prefix=""><code>  switch (namePage) {</code></pre>
+                    <pre data-prefix=""><code>   case "mainHome":</code></pre>
+                    <pre data-prefix=""><code>     mainHome();</code></pre>
+                    <pre data-prefix=""><code>     break;</code></pre>
+                    <pre data-prefix=""><code>   case "gamePlay":</code></pre>
+                    <pre data-prefix=""><code>    gamePlay();</code></pre>
+                    <pre data-prefix=""><code>    break;</code></pre>
+                    <pre data-prefix=""><code>   case "mainSetting":</code></pre>
+                    <pre data-prefix=""><code>    mainSetting();</code></pre>
+                    <pre data-prefix=""><code>  default:</code></pre>
+                    <pre data-prefix=""><code>    break;</code></pre>
+                    <pre data-prefix=""><code>  }</code></pre>
+                    <pre data-prefix=""><code>}</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                mainHome()
+              </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <strong>mainHome()</strong> adalah fungsi yang digunakan untuk mengatur tampilan awal atau landing page dari game. Dalam fungsi ini mengatur background color dan posisi
+                warna(saat ditekan maupun tidak), serta ukuran dari 2 button yang ada di dalamnya.
+                <div class="mt-10">
+                  <div class="container rounded-3 my-4 mt-3 text-xl text-bg-light font-weight-bold">
+                    <pre data-prefix=""><code>void mainHome() {</code></pre>
+                    <pre data-prefix=""><code>  background(bgColor);</code></pre>
+                    <pre data-prefix=""><code>  cursor(ARROW);</code></pre>
+                    <pre data-prefix=""><code>  componentButton(xCenter - 100,yCenter,150,60,5,shapeColor,shapeHoverColor,15);</code></pre>
+                    <pre data-prefix=""><code>  componentText("Play", xCenter - 100, yCenter + 15, TxtColor, txtHoverColor, 28, 5</code></pre>
+                    <pre data-prefix=""><code>  componentButton(xCenter + 100,yCenter,150,60,5,shapeColor,shapeHoverColor,15);</code></pre>
+                    <pre data-prefix=""><code>  componentText("Settings",xCenter + 100,yCenter + 15,TxtColor,txtHoverColor,28,5);</code></pre>
+                    <pre data-prefix=""><code>}</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                mainSetting()
+              </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <strong>mainSetting()</strong> adalah fungsi yang digunakan untuk mengatur tampilan dari halaman setting game. Pada halaman ini, hal-hal yang bisa diatur
+                atau set adalah level dan sound permainan. 
+                <div class="mt-10">
+                  <div class="container rounded-3 my-4 mt-3 text-xl text-bg-light font-weight-bold">
+                    <pre data-prefix=""><code>void mainSetting() {</code></pre>
+                    <pre data-prefix=""><code>  background(bgColor);</code></pre>
+                    <pre data-prefix=""><code>  cursor(ARROW);</code></pre>
+                    <pre data-prefix=""><code></code></pre>
+                    <pre data-prefix=""><code>  componentButton(xCenter - 120, yCenter - 30,180,60,5, shapeColor, shapeHoverColor, 18);</code></pre>
+                    <pre data-prefix=""><code>  componentText("Change Level",xCenter - 120,yCenter - 15,TxtColor,txtHoverColor,28,4);</code></pre>
+                    <pre data-prefix=""><code>  fill(255);</code></pre>
+                    <pre data-prefix=""><code>  rect(xCenter - 120, yCenter - 90, 100, 30, 7);</code></pre>
+                    <pre data-prefix=""><code>  componentText(level, xCenter - 120, yCenter - 75, 0, 0, 20, 4);</code></pre>
+                    <pre data-prefix=""><code></code></pre>
+                    <pre data-prefix=""><code>  componentButton(xCenter + 120,yCenter - 30,180,60,5,shapeColor,shapeHoverColor,18);</code></pre>
+                    <pre data-prefix=""><code>  componentText("Music SFX",xCenter + 120,yCenter - 15,TxtColor,txtHoverColor,28,4);</code></pre>
+                    <pre data-prefix=""><code>  fill(255);</code></pre>
+                    <pre data-prefix=""><code>  rect(xCenter + 120, yCenter - 90, 100, 30, 7);</code></pre>
+                    <pre data-prefix=""><code>  componentText(music, xCenter + 120, yCenter - 75, 0, 0, 20, 4);</code></pre>
+                    <pre data-prefix=""><code></code></pre>
+                    <pre data-prefix=""><code>  componentButton(xCenter,yCenter + 70,180,60,5,shapeColor,shapeHoverColor,18);</code></pre>
+                    <pre data-prefix=""><code>  componentText("Back", xCenter, yCenter + 85, TxtColor, txtHoverColor, 28, 4);</code></pre>
+                    <pre data-prefix=""><code>}</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                mainPlay()
+              </button>
+            </h2>
+            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <strong>mainPlay()</strong> adalah fungsi yang digunakan untuk mengatur tampilan saat game dimainkan. Dalam fungsi ini mengatur ukuran dan posisi dari 
+                background image, tampilan font style, tampilan section level, tampilan section skor, dan tampilan section waktu.
+                <div class="mt-10">
+                  <div class="container rounded-3 my-4 mt-3 text-xl text-bg-light font-weight-bold">
+                    <pre data-prefix=""><code>void mainPlay() {</code></pre>
+                    <pre data-prefix=""><code>  wLapangan = width * 0.6;</code></pre>
+                    <pre data-prefix=""><code>  hLapangan = height * 0.6;</code></pre>
+                    <pre data-prefix=""><code></code></pre>
+                    <pre data-prefix=""><code>  noStroke();</code></pre>
+                    <pre data-prefix=""><code>  imageMode(CENTER);</code></pre>
+                    <pre data-prefix=""><code>  rectMode(CORNER);</code></pre>
+                    <pre data-prefix=""><code>  fill(#00bd2f);</code></pre>
+                    <pre data-prefix=""><code>  rect(0, 0, width, height / 2);</code></pre>
+                    <pre data-prefix=""><code>  fill(#089e2d);</code></pre>
+                    <pre data-prefix=""><code>  rect(0, yCenter, width, height / 2);</code></pre>
+                    <pre data-prefix=""><code></code></pre>
+                    <pre data-prefix=""><code>  componentText("Whack A Mole Game", xCenter + 2, 102, 255, 255, 50, 0);</code></pre>
+                    <pre data-prefix=""><code>  componentText("Whack A Mole Game", xCenter, 100, 0, 0, 50, 0);</code></pre>
+                    <pre data-prefix=""><code></code></pre>
+                    <pre data-prefix=""><code>  stroke(0);</code></pre>
+                    <pre data-prefix=""><code>  rectMode(CENTER);</code></pre>
+                    <pre data-prefix=""><code>  fill(#964B00);</code></pre>
+                    <pre data-prefix=""><code>  rect(xCenter, yCenter, wLapangan, hLapangan);</code></pre>
+                    <pre data-prefix=""><code></code></pre>
+                    <pre data-prefix=""><code>  noStroke();</code></pre>
+                    <pre data-prefix=""><code>  fill(255);</code></pre>
+                    <pre data-prefix=""><code>  rect(xCenter - 140, height - 70, 130, 50, 10, 50, 10, 50);</code></pre>
+                    <pre data-prefix=""><code>  componentText("Skor", xCenter - 160, height - 55, 0, 0, 28, 5);</code></pre>
+                    <pre data-prefix=""><code>  componentText(str(skor), xCenter - 105, height - 54, 0, 0, 28, 5);</code></pre>
+                    <pre data-prefix=""><code></code></pre>
+                    <pre data-prefix=""><code>  fill(255);</code></pre>
+                    <pre data-prefix=""><code>  rect(xCenter + 140, height - 70, 130, 50, 10, 50, 10, 50);</code></pre>
+                    <pre data-prefix=""><code>  componentText(level, xCenter + 140, height - 55, 0, 0, 28, 5);</code></pre>
+                    <pre data-prefix=""><code></code></pre>
+                    <pre data-prefix=""><code>  fill(255);</code></pre>
+                    <pre data-prefix=""><code>  rect(xCenter, height - 70, 80, 50, 10, 50, 10, 50);</code></pre>
+                    <pre data-prefix=""><code>  componentText(str(countDown), xCenter, height - 55, 0, 0, 28, 5);</code></pre>
+                    <pre data-prefix=""><code></code></pre>
+                    <pre data-prefix=""><code>  if (!finish) {</code></pre>
+                    <pre data-prefix=""><code>    upAndDownShow();</code></pre>
+                    <pre data-prefix=""><code>  }</code></pre>
+                    <pre data-prefix=""><code>  renderHole();</code></pre>
+                    <pre data-prefix=""><code>}</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                upAndDownShow()
+              </button>
+            </h2>
+            <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <strong>upAndDownShow()</strong> adalah fungsi yang digunakan untuk mengatur transisi dari objek tikus. Transisi ini terjadi saat tikus muncul 
+                secara acak dan saat tikus dipukul. Fungsi ini nantinya akan memanggil fungsi yang berhubungan dengan transisi dari objek tikus, yakni 
+                fungsi transisiMuncul() dan transisiDown().
+                <div class="mt-10">
+                  <div class="container rounded-3 my-4 mt-3 text-xl text-bg-light font-weight-bold">
+                    <pre data-prefix=""><code>void upAndDownShow() {</code></pre>
+                    <pre data-prefix=""><code>  if (naik) {</code></pre>
+                    <pre data-prefix=""><code>    mRandom.transisiDown(numberOfLevel);</code></pre>
+                    <pre data-prefix=""><code>  } else {</code></pre>
+                    <pre data-prefix=""><code>    if (</code></pre>
+                    <pre data-prefix=""><code>      mouseX >= mRandom.xPos - mRandom.wSize / 2 &&</code></pre>
+                    <pre data-prefix=""><code>      mouseX <= mRandom.xPos + mRandom.wSize / 2 &&</code></pre>
+                    <pre data-prefix=""><code>      mouseY >= mRandom.yPos - mRandom.hSize / 2 &&</code></pre>
+                    <pre data-prefix=""><code>      mouseY <= mRandom.yPos + mRandom.hSize / 2 &&</code></pre>
+                    <pre data-prefix=""><code>      mousePressed</code></pre>
+                    <pre data-prefix=""><code>    ) {</code></pre>
+                    <pre data-prefix=""><code>      naik = true;</code></pre>
+                    <pre data-prefix=""><code>      bsPukul.play();</code></pre>
+                    <pre data-prefix=""><code>      skor++;</code></pre>
+                    <pre data-prefix=""><code>    } else {</code></pre>
+                    <pre data-prefix=""><code>      mRandom.transisiMuncul(numberOfLevel);</code></pre>
+                    <pre data-prefix=""><code>    }</code></pre>
+                    <pre data-prefix=""><code>  }</code></pre>
+                    <pre data-prefix=""><code>}</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                gamePlay()
+              </button>
+            </h2>
+            <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <strong>gamePlay()</strong> adalah fungsi yang digunakan untuk saat game dimainkan. Sebelum game dimulai, fungsi ini akan memanggil 
+                fungsi rundownBeforePlay() yang berfungsi untuk menampilkan waktu hitung mundur dan saat dimulai akan memanggil fungsi playingTime() 
+                yang berfungsi untuk menampilkan timer. Selain itu, saat game dimulai juga akan menjalankan fungsi randomPosition() yang mana akan 
+                diaplikasikan pada objek tikus untuk memilih lokasi muncul dari tanah secara acak.
+                <div class="mt-10">
+                  <div class="container rounded-3 my-4 mt-3 text-xl text-bg-light font-weight-bold">
+                    <pre data-prefix=""><code>void gamePlay() {</code></pre>
+                    <pre data-prefix=""><code>  cursor(ARROW);</code></pre>
+                    <pre data-prefix=""><code>  if (waktuTunggu > -1) {</code></pre>
+                    <pre data-prefix=""><code>    rundownBeforePlay();</code></pre>
+                    <pre data-prefix=""><code>    if (waktuTunggu == 0) {</code></pre>
+                    <pre data-prefix=""><code>      countDown = 0;</code></pre>
+                    <pre data-prefix=""><code>      startTime = millis()/1000;</code></pre>
+                    <pre data-prefix=""><code>      playingTime();</code></pre>
+                    <pre data-prefix=""><code>    }</code></pre>
+                    <pre data-prefix=""><code>  } else {</code></pre>
+                    <pre data-prefix=""><code>    if (a) {</code></pre>
+                    <pre data-prefix=""><code>      skor = 0;</code></pre>
+                    <pre data-prefix=""><code>      randomPosition();</code></pre>
+                    <pre data-prefix=""><code>      a = false;</code></pre>
+                    <pre data-prefix=""><code>    }</code></pre>
+                    <pre data-prefix=""><code>    if(countDown > 0){</code></pre>
+                    <pre data-prefix=""><code>      playingTime();</code></pre>
+                    <pre data-prefix=""><code>    }</code></pre>
+                    <pre data-prefix=""><code>    mainPlay();</code></pre>
+                    <pre data-prefix=""><code>    if (countDown <= 0) {</code></pre>
+                    <pre data-prefix=""><code>      winOrLose();</code></pre>
+                    <pre data-prefix=""><code>      finish = true;</code></pre>
+                    <pre data-prefix=""><code>    } else {</code></pre>
+                    <pre data-prefix=""><code>      changeCursor();</code></pre>
+                    <pre data-prefix=""><code>    }</code></pre>
+                    <pre data-prefix=""><code>  }</code></pre>
+                    <pre data-prefix=""><code>}</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="cover-heading my-5">The Components</h3>
+
+      <div class="container mt-10">
+      <div class="accordion my-1" id="accordionExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+              componentButton()
+            </button>
+          </h2>
+          <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>componentButton()</strong> berfungsi untuk mengatur tampilan dari setiap tombol yang digunakan dalam permainan. Tampilan yang dimaksud seperti letak, ukuran, warna saat ditekan, serta posisi.
+              <div class="mt-10">
+                <div class="container rounded-3 mt-3 text-xl text-bg-light font-weight-bold">
+                  <pre data-prefix="1"><code>void componentButton(float xPos, float yPos, float wSize, float hSize, int rounded, color sColor, 
+                    color hoverColor, int scaleSize) {</code></pre>
+                  <pre data-prefix=""><code></code></pre>
+                  <pre data-prefix=""><code>  rectMode(CENTER);</code></pre>
+                  <pre data-prefix=""><code>  float d = dist(xPos, yPos, mouseX, mouseY);</code></pre>
+                  <pre data-prefix=""><code></code></pre>
+                  <pre data-prefix=""><code>   if (d < wSize && d < hSize && mouseY > yPos - hSize / 2 && mouseY < yPos + hSize / 2) {</code></pre>
+                  <pre data-prefix=""><code>    fill(hoverColor);</code></pre>
+                  <pre data-prefix=""><code>    wSize += scaleSize;</code></pre>
+                  <pre data-prefix=""><code>    isHover = true;</code></pre>
+                  <pre data-prefix=""><code>    cursor(HAND);</code></pre>
+                  <pre data-prefix=""><code>   } else {</code></pre>
+                  <pre data-prefix=""><code>     fill(sColor);</code></pre>
+                  <pre data-prefix=""><code>   }</code></pre>
+                  <pre data-prefix=""><code>   rect(xPos, yPos, wSize, hSize, rounded + 5, rounded + 15, rounded + 5, rounded + 15);</code></pre>
+                  <pre data-prefix=""><code>}</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+              componentText()
+            </button>
+          </h2>
+          <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>componentText()</strong> berfungsi untuk mengatur tampilan dari setiap kata yang ada dalam permainan, baik paragraf biasa, maupun kata dalam tombol. 
+              Tampilan yang dimaksud seperti letak, ukuran, warna saat ditekan, serta posisi.
+              <div class="mt-10">
+                <div class="container rounded-3 my-4 mt-3 text-xl text-bg-light font-weight-bold">
+                  <pre data-prefix=""><code>void componentText(String str, float xPos, float yPos, color txtColor, color hoverColor, 
+                    float txtSize, float scaleSize) {</code></pre>
+                  <pre data-prefix=""><code> noStroke();</code></pre>
+                  <pre data-prefix=""><code> if (isHover) {</code></pre>
+                  <pre data-prefix=""><code>   textSize(scaleSize + txtSize);</code></pre>
+                  <pre data-prefix=""><code>   yPos += 2;</code></pre>
+                  <pre data-prefix=""><code>   fill(hoverColor);</code></pre>
+                  <pre data-prefix=""><code>   if (mousePressed && mouseButton == LEFT) {</code></pre>
+                  <pre data-prefix=""><code>     txtIsHover = str;</code></pre>
+                  <pre data-prefix=""><code>   }</code></pre>
+                  <pre data-prefix=""><code>   isHover = false;</code></pre>
+                  <pre data-prefix=""><code> } else {</code></pre>
+                  <pre data-prefix=""><code>   textSize(txtSize);</code></pre>
+                  <pre data-prefix=""><code>   fill(txtColor);</code></pre>
+                  <pre data-prefix=""><code> }</code></pre>
+                  <pre data-prefix=""><code></code></pre>
+                  <pre data-prefix=""><code> textAlign(CENTER, BOTTOM);</code></pre>
+                  <pre data-prefix=""><code> text(str, xPos, yPos);</code></pre>
+                  <pre data-prefix=""><code>}</code></pre> 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+              class Tikus
+            </button>
+          </h2>
+          <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>Class Tikus</strong> merupakan class yang diaplikasikan untuk objek tikus atau <i>mole</i> dalam game. Dalam class ini terdapat beberapa function,
+              seperti show(), transisiMuncul(), dan transisiDown(). Tiap function tersebut memiliki fungsi yang berbeda, yakni untuk menampilkan objek tikus, tampilan tikus 
+              saat keluar dari lubang dan masuk ke lubang saat dipukul. Class ini juga digunakan untuk mengatur gambar atau image dari tikus, ukurannya, dan juga posisinya.
+              <div class="mt-10">
+                <div class="container rounded-3 my-4 mt-3 text-xl text-bg-light font-weight-bold">
+                  <pre data-prefix=""><code>class Tikus {</code></pre>
+                  <pre data-prefix=""><code> PImage img;</code></pre>
+                  <pre data-prefix=""><code> float xPos, yPos,hSize,wSize, transisiUp = 36, tmpX, tmpY;</code></pre>
+                  <pre data-prefix=""><code></code></pre>
+                  <pre data-prefix=""><code> Tikus(PImage img, float xPos, float yPos, float hSize, float wSize){ </code></pre>
+                  <pre data-prefix=""><code>  this.img = img;</code></pre>
+                  <pre data-prefix=""><code>  this.xPos = xPos;</code></pre>
+                  <pre data-prefix=""><code>  this.tmpX = xPos;</code></pre>
+                  <pre data-prefix=""><code>  this.yPos = yPos;</code></pre>
+                  <pre data-prefix=""><code>  this.tmpY = yPos;</code></pre>
+                  <pre data-prefix=""><code>  this.hSize = hSize;</code></pre>
+                  <pre data-prefix=""><code> }</code></pre>
+                  <pre data-prefix=""><code></code></pre>
+                  <pre data-prefix=""><code> void show() {</code></pre>
+                  <pre data-prefix=""><code>  image(this.img, this.xPos, this.yPos, this.hSize, this.wSize);</code></pre>
+                  <pre data-prefix=""><code> };</code></pre>
+                  <pre data-prefix=""><code></code></pre>
+                  <pre data-prefix=""><code> void transisiMuncul(int numberOfLevel) {</code></pre>
+                  <pre data-prefix=""><code>  if (i == this.transisiUp) {</code></pre>
+                  <pre data-prefix=""><code>    naik = true;</code></pre>
+                  <pre data-prefix=""><code>    i = 0;</code></pre>
+                  <pre data-prefix=""><code>    tint(255, 255);</code></pre>
+                  <pre data-prefix=""><code>  } else {</code></pre>
+                  <pre data-prefix=""><code>    this.yPos -= numberOfLevel;</code></pre>
+                  <pre data-prefix=""><code>  }</code></pre>
+                  <pre data-prefix=""><code>  i += numberOfLevel;</code></pre>
+                  <pre data-prefix=""><code>  this.show();</code></pre>
+                  <pre data-prefix=""><code> }</code></pre>
+                  <pre data-prefix=""><code></code></pre>
+                  <pre data-prefix=""><code> void transisiDown(int numberOfLevel) {</code></pre>
+                  <pre data-prefix=""><code>  tint(255, 255 - i * 20);</code></pre>
+                  <pre data-prefix=""><code>  if (i == this.transisiUp) {</code></pre>
+                  <pre data-prefix=""><code>    naik = false;</code></pre>
+                  <pre data-prefix=""><code>    i = 0;</code></pre>
+                  <pre data-prefix=""><code>    this.xPos = this.tmpX;</code></pre>
+                  <pre data-prefix=""><code>    this.yPos = this.tmpY;</code></pre>
+                  <pre data-prefix=""><code>    tint(255, 0);</code></pre>
+                  <pre data-prefix=""><code>    randomPosition();</code></pre>
+                  <pre data-prefix=""><code>  } else {</code></pre>
+                  <pre data-prefix=""><code>    this.yPos += numberOfLevel;</code></pre>
+                  <pre data-prefix=""><code>  }</code></pre> 
+                  <pre data-prefix=""><code>  this.show();</code></pre>
+                  <pre data-prefix=""><code>  i += numberOfLevel;</code></pre>
+                  <pre data-prefix=""><code> }</code></pre>
+                  <pre data-prefix=""><code>}</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+              class Tanah
+            </button>
+          </h2>
+          <div id="collapseEleven" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>Class Tanah</strong> merupakan class yang diaplikasikan untuk objek tanah dalam game. Dalam class ini terdapat function
+              show() yang berfungsi untuk menampilkan objek tanah itu sendiri. Class ini juga digunakan untuk mengatur gambar atau image dari tanah, ukurannya, dan juga posisinya.
+              <div class="mt-10">
+                <div class="container rounded-3 my-4 mt-3 text-xl text-bg-light font-weight-bold">
+                  <pre data-prefix=""><code>class Tanah {</code></pre>
+                  <pre data-prefix=""><code> PImage img;</code></pre>
+                  <pre data-prefix=""><code> Tanah(PImage img, float xPos, float yPos, float hSize, float wSize){ </code></pre>
+                  <pre data-prefix=""><code>  this.img = img;</code></pre>
+                  <pre data-prefix=""><code>  this.xPos = xPos;</code></pre>
+                  <pre data-prefix=""><code>  this.yPos = yPos;</code></pre>
+                  <pre data-prefix=""><code>  this.hSize = hSize;</code></pre>
+                  <pre data-prefix=""><code>  this.wSize = wSize;</code></pre>
+                  <pre data-prefix=""><code> }</code></pre>
+                  <pre data-prefix=""><code></code></pre>
+                  <pre data-prefix=""><code> void show() {</code></pre>
+                  <pre data-prefix=""><code>  image(this.img, this.xPos, this.yPos, this.hSize, this.wSize);</code></pre>
+                  <pre data-prefix=""><code> };</code></pre>
+                  <pre data-prefix=""><code>}</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>  
+      </div>
+    </div>
+    </div>
+  </div>
+</main>
+      
+      <footer class="mastfoot mt-auto">
+				<section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+				  <div class="me-5 d-none d-lg-block">
+					<span>Get connected with us on social networks:</span>
+				  </div>
+				  <div>
+					<a href="http://www.pnj.ac.id" class="me-4 text-reset">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-globe" viewBox="0 0 16 16">
+							<path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855A7.97 7.97 0 0 0 5.145 4H7.5V1.077zM4.09 4a9.267 9.267 0 0 1 .64-1.539 6.7 6.7 0 0 1 .597-.933A7.025 7.025 0 0 0 2.255 4H4.09zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a6.958 6.958 0 0 0-.656 2.5h2.49zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5H4.847zM8.5 5v2.5h2.99a12.495 12.495 0 0 0-.337-2.5H8.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5H4.51zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5H8.5zM5.145 12c.138.386.295.744.468 1.068.552 1.035 1.218 1.65 1.887 1.855V12H5.145zm.182 2.472a6.696 6.696 0 0 1-.597-.933A9.268 9.268 0 0 1 4.09 12H2.255a7.024 7.024 0 0 0 3.072 2.472zM3.82 11a13.652 13.652 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5H3.82zm6.853 3.472A7.024 7.024 0 0 0 13.745 12H11.91a9.27 9.27 0 0 1-.64 1.539 6.688 6.688 0 0 1-.597.933zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855.173-.324.33-.682.468-1.068H8.5zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.65 13.65 0 0 1-.312 2.5zm2.802-3.5a6.959 6.959 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5h2.49zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7.024 7.024 0 0 0-3.072-2.472c.218.284.418.598.597.933zM10.855 4a7.966 7.966 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4h2.355z"/>
+						  </svg>
+					</a>
+					<a href="https://humas@pnj.ac.id" class="me-4 text-reset">
+					  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-at-fill" viewBox="0 0 16 16">
+						<path d="M2 2A2 2 0 0 0 .05 3.555L8 8.414l7.95-4.859A2 2 0 0 0 14 2H2Zm-2 9.8V4.698l5.803 3.546L0 11.801Zm6.761-2.97-6.57 4.026A2 2 0 0 0 2 14h6.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.606-3.446l-.367-.225L8 9.586l-1.239-.757ZM16 9.671V4.697l-5.803 3.546.338.208A4.482 4.482 0 0 1 12.5 8c1.414 0 2.675.652 3.5 1.671Z"/>
+						<path d="M15.834 12.244c0 1.168-.577 2.025-1.587 2.025-.503 0-1.002-.228-1.12-.648h-.043c-.118.416-.543.643-1.015.643-.77 0-1.259-.542-1.259-1.434v-.529c0-.844.481-1.4 1.26-1.4.585 0 .87.333.953.63h.03v-.568h.905v2.19c0 .272.18.42.411.42.315 0 .639-.415.639-1.39v-.118c0-1.277-.95-2.326-2.484-2.326h-.04c-1.582 0-2.64 1.067-2.64 2.724v.157c0 1.867 1.237 2.654 2.57 2.654h.045c.507 0 .935-.07 1.18-.18v.731c-.219.1-.643.175-1.237.175h-.044C10.438 16 9 14.82 9 12.646v-.214C9 10.36 10.421 9 12.485 9h.035c2.12 0 3.314 1.43 3.314 3.034v.21Zm-4.04.21v.227c0 .586.227.8.581.8.31 0 .564-.17.564-.743v-.367c0-.516-.275-.708-.572-.708-.346 0-.573.245-.573.791Z"/>
+					  </svg>
+					</a>
+					<a href="https://id-id.facebook.com/PoliteknikNegeriJakartaOfficial/" class="me-4 text-reset">
+					  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+						<path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+					  </svg>
+					</a>
+					<a href="https://www.instagram.com/politekniknegerijakarta/" class="me-4 text-reset">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+							<path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/>
+						</svg>
+					</a>
+					<a href="https://www.youtube.com/@politekniknegerijakarta1839/featured" class="me-4 text-reset">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
+							<path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
+						  </svg>
+					</a>
+				  </div>
+				</section>
+			</footer>
+      
+  </body>
+</html>
