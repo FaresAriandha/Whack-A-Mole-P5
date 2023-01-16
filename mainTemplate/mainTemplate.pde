@@ -2,10 +2,10 @@ import processing.sound.*;
 SoundFile bsGame;
 SoundFile bsPukul;
 SoundFile bsClick;
-String txtIsHover;
+String txtIsHover = "";
 String namePage = "mainHome";
 float xCenter, yCenter;
-float bgColor = 128;
+color bgColor = #c6e6fb;
 PImage tikus, tanah, palu;
 float ukuranTikus = 100;
 int numberOfLevel = 1;
@@ -16,9 +16,9 @@ void setup() {
   //String path = ""
   tanah = loadImage("assets/tanah.png");
   tikus = loadImage("assets/tikus.png");
-  palu = loadImage("assets/palu.png");
+  palu = loadImage("assets/palu2.png");
   bsGame = new SoundFile(this, "assets/BGM.mp3");
-  bsPukul = new SoundFile(this, "assets/Pukul.mp3");
+  bsPukul = new SoundFile(this, "assets/Pukul2.mp3");
   bsClick = new SoundFile(this, "assets/Tick.mp3");
   setLevel();
   setMusic();

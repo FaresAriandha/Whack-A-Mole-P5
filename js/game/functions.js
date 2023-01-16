@@ -10,32 +10,34 @@ let randomNumberBefore,
 	waktuMain = 10000;
 let wLapangan, hLapangan;
 let a, mRandom, waktuTunggu;
-let shapeColor = "#fccc47",
-	shapeHoverColor = "#ffc117",
-	txtColor = "grey",
-	txtHoverColor = "black";
-let level, isClick, isHoverMole, music, timePlay;
+let shapeColor = "#D3A384",
+	shapeHoverColor = "#BA8B6D",
+	txtColor = "#e3e1e1",
+	txtHoverColor = "255";
+let level, isClick, music, timePlay;
 let intervalTime;
 
 function mainHome() {
 	background(bgColor);
 	cursor(ARROW);
+	componentText("Whack A Mole Game", xCenter + 2, 204, 0, 0, 50, 0);
+	componentText("Whack A Mole Game", xCenter, 200, "#EDBC9B", "#EDBC9B", 50, 0);
 	componentButton(
-		xCenter,
-		yCenter - 20,
-		100,
-		50,
+		xCenter - 100,
+		yCenter,
+		150,
+		60,
 		5,
 		shapeColor,
 		shapeHoverColor,
 		15
 	);
-	componentText("Play", xCenter, yCenter - 20, txtColor, txtHoverColor, 20, 5);
+	componentText("Play", xCenter - 100, yCenter, txtColor, txtHoverColor, 22, 4);
 	componentButton(
-		xCenter,
-		yCenter + 60,
-		100,
-		50,
+		xCenter + 100,
+		yCenter,
+		150,
+		60,
 		5,
 		shapeColor,
 		shapeHoverColor,
@@ -43,23 +45,25 @@ function mainHome() {
 	);
 	componentText(
 		"Settings",
-		xCenter,
-		yCenter + 60,
+		xCenter + 100,
+		yCenter,
 		txtColor,
 		txtHoverColor,
-		20,
-		5
+		22,
+		4
 	);
 }
 
 function mainSetting() {
 	background(bgColor);
 	cursor(ARROW);
+	componentText("Settings", xCenter + 2, 154, 0, 0, 50, 0);
+	componentText("Settings", xCenter, 150, "#EDBC9B", "#EDBC9B", 50, 0);
 
 	// Button Change Level
 	componentButton(
 		xCenter - 100,
-		yCenter - 30,
+		yCenter + 20,
 		150,
 		50,
 		5,
@@ -70,20 +74,22 @@ function mainSetting() {
 	componentText(
 		"Change Level",
 		xCenter - 100,
-		yCenter - 30,
+		yCenter + 20,
 		txtColor,
 		txtHoverColor,
 		20,
 		4
 	);
 	fill(255);
-	rect(xCenter - 100, yCenter - 90, 100, 30, 7);
-	componentText(level, xCenter - 100, yCenter - 90, 0, 0, 20, 4);
+	rect(xCenter - 100, yCenter - 60, 150, 50, 7);
+	textStyle(BOLD);
+	componentText(level, xCenter - 100, yCenter - 60, 0, 0, 20, 4);
 
 	// Button Sound
+	textStyle(NORMAL);
 	componentButton(
 		xCenter + 100,
-		yCenter - 30,
+		yCenter + 20,
 		150,
 		50,
 		5,
@@ -94,20 +100,22 @@ function mainSetting() {
 	componentText(
 		"Music SFX",
 		xCenter + 100,
-		yCenter - 30,
+		yCenter + 20,
 		txtColor,
 		txtHoverColor,
 		20,
 		4
 	);
 	fill(255);
-	rect(xCenter + 100, yCenter - 90, 100, 30, 7);
-	componentText(music, xCenter + 100, yCenter - 90, 0, 0, 20, 4);
+	rect(xCenter + 100, yCenter - 60, 150, 50, 7);
+	textStyle(BOLD);
+	componentText(music, xCenter + 100, yCenter - 60, 0, 0, 23, 4);
 
 	// Button Back
+	textStyle(NORMAL);
 	componentButton(
 		xCenter,
-		yCenter + 70,
+		yCenter + 120,
 		100,
 		50,
 		5,
@@ -115,7 +123,7 @@ function mainSetting() {
 		shapeHoverColor,
 		15
 	);
-	componentText("Back", xCenter, yCenter + 70, txtColor, txtHoverColor, 20, 5);
+	componentText("Back", xCenter, yCenter + 120, txtColor, txtHoverColor, 23, 5);
 }
 
 function mainPlay() {
@@ -164,22 +172,6 @@ function mainPlay() {
 	renderHole();
 }
 
-function changeCursor() {
-	if (
-		mouseX >= xCenter - wLapangan / 2 &&
-		mouseX <= xCenter + wLapangan / 2 &&
-		mouseY >= yCenter - hLapangan / 2 &&
-		mouseY <= yCenter + hLapangan / 2 &&
-		mouseIsPressed
-	) {
-		rotate((PI / 180) * 1.3);
-		image(palu, mouseX, mouseY, 80, 80);
-	} else {
-		rotate(0);
-		image(palu, mouseX, mouseY, 80, 80);
-	}
-}
-
 function makeMole() {
 	let jumlahTikus = 6;
 	for (let t = 0; t < jumlahTikus; t++) {
@@ -217,6 +209,22 @@ function makeMole() {
 	}
 }
 
+function changeCursor() {
+	if (
+		mouseX >= xCenter - wLapangan / 2 &&
+		mouseX <= xCenter + wLapangan / 2 &&
+		mouseY >= yCenter - hLapangan / 2 &&
+		mouseY <= yCenter + hLapangan / 2 &&
+		mouseIsPressed
+	) {
+		rotate((PI / 180) * 1.3);
+		image(palu, mouseX, mouseY, 80, 80);
+	} else {
+		rotate(0);
+		image(palu, mouseX, mouseY, 80, 80);
+	}
+}
+
 function renderHole() {
 	tint(255, 255);
 	hole.forEach((h) => {
@@ -245,12 +253,14 @@ function upAndDownShow() {
 			mouseX >= mRandom.xPos - mRandom.width / 2 &&
 			mouseX <= mRandom.xPos + mRandom.width / 2 &&
 			mouseY >= mRandom.yPos - mRandom.height / 2 &&
-			mouseY <= mRandom.yPos + mRandom.height / 2
+			mouseY <= mRandom.yPos + mRandom.height / 2 &&
+			mouseIsPressed
 		) {
-			isHoverMole = true;
+			naik = true;
+			bsPukul.play();
+			skor++;
 		} else {
 			mRandom.transisiMuncul(numberOfLevel);
-			naik = false;
 		}
 	}
 }
@@ -312,12 +322,6 @@ function mouseClicked() {
 		bsClick.play();
 	}
 
-	if (isHoverMole && txtIsHover == "") {
-		bsPukul.play();
-		skor++;
-		naik = true;
-	}
-
 	switch (txtIsHover) {
 		case "Play":
 		case "Main Lagi":
@@ -352,6 +356,7 @@ function gamePLay() {
 	cursor(ARROW);
 	if (waktuTunggu > -1) {
 		rundownBeforePlay();
+		naik = false;
 		if (waktuTunggu == 0) {
 			timePlay = 11;
 			playingTime();
@@ -365,7 +370,7 @@ function gamePLay() {
 		cursor(ARROW);
 		mainPlay();
 		if (timePlay == 0) {
-			winOrLose();
+			finishGame();
 			finish = true;
 			clearInterval(intervalTime);
 		} else {
@@ -378,11 +383,11 @@ function gamePLay() {
 function rundownBeforePlay() {
 	noStroke();
 	rectMode(CENTER);
-	fill(0, 0, 255);
+	fill(bgColor);
 	rect(xCenter, yCenter, width, height);
 	fill(0);
 	textStyle(BOLD);
-	componentText(waktuTunggu, xCenter, yCenter, "#000000", "#000000", 40, 5);
+	componentText(waktuTunggu, xCenter, yCenter, "#000000", "#000000", 60, 5);
 	waktuTunggu--;
 	// console.log(waktuTunggu);
 	sleep(1000);
@@ -394,7 +399,7 @@ function playingTime() {
 	}, 1000);
 }
 
-function winOrLose() {
+function finishGame() {
 	// overlay
 	rectMode(CENTER);
 	stroke(0);

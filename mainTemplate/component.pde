@@ -107,6 +107,8 @@ void componentButton(float xPos, float yPos, float wSize, float hSize, int round
   // Event Hover
   if (d < wSize && d < hSize && mouseY > yPos - hSize / 2 && mouseY < yPos + hSize / 2) {
     fill(hoverColor);
+    stroke(255);
+    strokeWeight(3);
     wSize += scaleSize;
     hSize += scaleSize;
     isHover = true;

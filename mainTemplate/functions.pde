@@ -1,5 +1,5 @@
 float strKalimat, strWidth, padding = 10, wLapangan, hLapangan;
-String music, level = "normal";
+String music, level = "easy";
 int tikusPositionX = 170;
 int tanahPositionX = tikusPositionX;
 int tikusPositionY = 90; 
@@ -7,15 +7,18 @@ int tanahPositionY = tikusPositionY;
 int randomNumberBefore, timePlay = 11;
 Boolean finish = false, a, isClick = false;
 int skor = 0, waktuMain = 10000, waktuTunggu, countDown, startTime;
-color shapeColor = #fccc47,
-  shapeHoverColor = #ffc117,
-  TxtColor = #808080,
-  txtHoverColor = 0;
+color shapeColor = #636362,
+  shapeHoverColor = #000000,
+  TxtColor = #e3e1e1,
+  txtHoverColor = 255;
 Tikus mRandom; 
 
 void mainHome() {
   background(bgColor);
   cursor(ARROW);
+  componentText("Whack A Mole Game", xCenter + 2, 254, 0, 0, 50, 0);
+  componentText("Whack A Mole Game", xCenter, 250, #cf900a, #cf900a, 50, 0);
+
   componentButton(xCenter - 100,yCenter,150,60,5,shapeColor,shapeHoverColor,15);
   componentText("Play", xCenter - 100, yCenter + 15, TxtColor, txtHoverColor, 28, 5);
   componentButton(xCenter + 100,yCenter,150,60,5,shapeColor,shapeHoverColor,15);
@@ -25,19 +28,22 @@ void mainHome() {
 void mainSetting() {
   background(bgColor);
   cursor(ARROW);
+  componentText("Settings", xCenter + 2, 184, 0, 0, 50, 0);
+  componentText("Settings", xCenter, 180, #cf900a, #cf900a, 50, 0);
+
   // Set Level
   componentButton(xCenter - 120, yCenter - 30,180,60,5, shapeColor, shapeHoverColor, 18);
   componentText("Change Level",xCenter - 120,yCenter - 15,TxtColor,txtHoverColor,28,4);
-  fill(255);
-  rect(xCenter - 120, yCenter - 90, 100, 30, 7);
-  componentText(level, xCenter - 120, yCenter - 75, 0, 0, 20, 4);
+  fill(shapeHoverColor);
+  rect(xCenter - 120, yCenter - 110, 180, 50, 7);
+  componentText(level, xCenter - 120, yCenter - 95, 0, 0, 25, 4);
   
   // Set Sound
   componentButton(xCenter + 120,yCenter - 30,180,60,5,shapeColor,shapeHoverColor,18);
   componentText("Music SFX",xCenter + 120,yCenter - 15,TxtColor,txtHoverColor,28,4);
-  fill(255);
-  rect(xCenter + 120, yCenter - 90, 100, 30, 7);
-  componentText(music, xCenter + 120, yCenter - 75, 0, 0, 20, 4);
+  fill(shapeHoverColor);
+  rect(xCenter + 120, yCenter - 110, 180, 50, 7);
+  componentText(music, xCenter + 120, yCenter - 95, 0, 0, 25, 4);
   
   // Set button back
   componentButton(xCenter,yCenter + 70,180,60,5,shapeColor,shapeHoverColor,18);
@@ -91,6 +97,31 @@ void mainPlay() {
   renderHole();
 }
 
+void renderHole() {
+  tint(255, 255);
+  for(int h = 0; h < hole.size(); h++){
+    hole.get(h).show();
+  }
+}
+
+
+void changeCursor() {
+    if (
+    mouseX >= xCenter - wLapangan / 2 &&
+    mouseX <= xCenter + wLapangan / 2 &&
+    mouseY >= yCenter - hLapangan / 2 &&
+    mouseY <= yCenter + hLapangan / 2 &&
+    mousePressed
+  ) {
+    rotate((PI / 180) * 1.3);
+    image(palu, mouseX, mouseY, 80, 80);
+  } else {
+    rotate(0);
+    image(palu, mouseX, mouseY, 80, 80);
+  }
+}
+
+
 void makeMole() {
   int jumlahTikus = 6;
   for (int t = 0; t < jumlahTikus; t++) {
@@ -102,13 +133,6 @@ void makeMole() {
       hole.add(new Tanah(tanah, xCenter - tanahPositionX + t * tanahPositionX,yCenter - tanahPositionY,150,80));
     }
     
-  }
-}
-
-void renderHole() {
-  tint(255, 255);
-  for(int h = 0; h < hole.size(); h++){
-    hole.get(h).show();
   }
 }
 
@@ -124,6 +148,8 @@ void randomPosition() {
 int randomTime(int min, int max) {
   return floor(random(min, max));
 }
+
+
 
 void upAndDownShow() {
   if (naik) {
@@ -168,18 +194,18 @@ void setMusic() {
 
 void setLevel(){
   if (level == null) {
-    level = "normal";
+    level = "easy";
   } else if (isClick) {
-    if (level == "normal") {
+    if (level == "easy") {
       level = "medium";
     } else if (level == "medium") {
       level = "hard";
     } else if (level == "hard") {
-      level = "normal";
+      level = "easy";
     }
   }
   
-if (level == "normal") {
+if (level == "easy") {
     numberOfLevel = 1;
   } else if (level == "medium") {
     numberOfLevel = 2;
@@ -244,7 +270,7 @@ void gamePlay() {
     }
     mainPlay();
     if (countDown <= 0) {
-      winOrLose();
+      finishGame();
       finish = true;
     } else {
       changeCursor();
@@ -269,7 +295,7 @@ void playingTime() {
   countDown = timePlay - (ms - startTime); 
 }
 
-void winOrLose() {
+void finishGame() {
   
   // Overlay
   rectMode(CENTER);
@@ -292,15 +318,4 @@ void winOrLose() {
   componentText("Main Lagi",xCenter - 100,yCenter + 115,TxtColor,txtHoverColor,28,5);
   componentButton(xCenter + 100,yCenter + 100,150,60,5,shapeColor,shapeHoverColor,15);
   componentText("Exit",xCenter + 100,yCenter + 115,TxtColor,txtHoverColor,28,5);
-}
-
-void changeCursor() {
-  if (
-    mouseX >= xCenter - wLapangan / 2 &&
-    mouseX <= xCenter + wLapangan / 2 &&
-    mouseY >= yCenter - hLapangan / 2 &&
-    mouseY <= yCenter + hLapangan / 2
-  ) {
-    image(palu, mouseX, mouseY, 65, 65);
-  }
 }

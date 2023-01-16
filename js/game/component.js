@@ -2,7 +2,6 @@ let isHover = false;
 let mole = [];
 let hole = [];
 let i = 0;
-let naik = false;
 
 function componentText(
 	str,
@@ -51,6 +50,8 @@ function componentButton(
 		mouseY < yPos + hSize / 2
 	) {
 		fill(hoverColor);
+		stroke(255);
+		strokeWeight(3);
 		wSize += scaleSize;
 		hSize += scaleSize;
 		isHover = true;
@@ -72,7 +73,7 @@ function componentButton(
 	hSize -= scaleSize;
 }
 
-function Tikus(img, xPos, yPos, height, width, levelShow) {
+function Tikus(img, xPos, yPos, height, width) {
 	(this.img = img),
 		(this.xPos = xPos),
 		(this.yPos = yPos),
@@ -80,8 +81,7 @@ function Tikus(img, xPos, yPos, height, width, levelShow) {
 		(this.tmpX = xPos),
 		(this.width = width),
 		(this.tmpY = yPos),
-		(this.level = levelShow),
-		(this.transisiUp = 24);
+		(this.transisiUp = 36);
 
 	this.show = function () {
 		image(this.img, this.xPos, this.yPos, this.height, this.width);
@@ -89,31 +89,35 @@ function Tikus(img, xPos, yPos, height, width, levelShow) {
 
 	this.transisiMuncul = function (numberOfLevel) {
 		if (i == this.transisiUp) {
+			console.log("turun");
 			naik = true;
 			i = 0;
 			tint(255, 255);
 		} else {
 			this.yPos -= numberOfLevel;
 		}
+		// console.log();
 		i += numberOfLevel;
 		this.show();
 	};
 
 	this.transisiDown = function (numberOfLevel) {
 		tint(255, 255 - i * 20);
+		this.show();
 		if (i == this.transisiUp) {
-			naik = false;
 			i = 0;
+			console.log("naik");
+			naik = false;
 			this.xPos = this.tmpX;
 			this.yPos = this.tmpY;
 			tint(255, 0);
 			randomPosition();
 		} else {
 			this.yPos += numberOfLevel;
+			i += numberOfLevel;
 		}
-		this.show();
 		// console.log(i);
-		i += numberOfLevel;
+		console.log(numberOfLevel);
 	};
 
 	mole.push(this);

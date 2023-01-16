@@ -2,10 +2,11 @@ let txtIsHover;
 let namePage = "mainHome";
 let xCenter, yCenter;
 let theme = "dark",
-	bgColor = 128;
+	bgColor = "#c6e6fb";
 let tikus, tanah, palu, bsGame, bsPukul, bsClick;
 let ukuranTikus = 100;
 let numberOfLevel = 1;
+let naik;
 // let canvasElement;
 
 function preload() {
