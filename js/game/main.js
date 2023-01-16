@@ -10,13 +10,13 @@ let naik;
 // let canvasElement;
 
 function preload() {
-	tanah = loadImage("../../assets/tanah.png");
-	tikus = loadImage("../../assets/tikus.png");
-	palu = loadImage("../../assets/palu2.png");
+	tanah = loadImage("./assets/tanah.png");
+	tikus = loadImage("./assets/tikus.png");
+	palu = loadImage("./assets/palu2.png");
 	soundFormats("mp3", "ogg");
-	bsGame = loadSound("../../assets/BGM");
-	bsPukul = loadSound("../../assets/Pukul2");
-	bsClick = loadSound("../../assets/Tick");
+	bsGame = loadSound("./assets/BGM");
+	bsPukul = loadSound("./assets/Pukul2");
+	bsClick = loadSound("./assets/Tick");
 	// bsPukul.speed(2.0);
 }
 
