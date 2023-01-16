@@ -325,9 +325,6 @@ function mouseClicked() {
 	switch (txtIsHover) {
 		case "Play":
 		case "Main Lagi":
-			tanah = loadImage("../../assets/tanah.png");
-			tikus = loadImage("../../assets/tikus.png");
-			palu = loadImage("../../assets/palu2.png");
 			a = true;
 			finish = !a;
 			namePage = "gamePlay";
