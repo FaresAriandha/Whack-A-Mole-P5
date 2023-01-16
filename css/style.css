@@ -4,5 +4,20 @@
 }
 
 body {
+	background-color: #c6e6fb;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 	overflow: hidden;
 }
+
+/* main {
+	align-self: center;
+}
+
+footer {
+	align-self: center;
+} */
