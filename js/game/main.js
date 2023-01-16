@@ -19,9 +19,6 @@ function preload() {
 
 function setup() {
 	createCanvas(900, 600);
-	tanah = loadImage("../../assets/tanah.png");
-	tikus = loadImage("../../assets/tikus.png");
-	palu = loadImage("../../assets/palu2.png");
 	imageMode(CENTER);
 	bsGame.loop();
 	setLevel();
