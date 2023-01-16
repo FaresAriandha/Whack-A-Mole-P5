@@ -10,9 +10,6 @@ let naik;
 // let canvasElement;
 
 function preload() {
-	tanah = loadImage("../../assets/tanah.png");
-	tikus = loadImage("../../assets/tikus.png");
-	palu = loadImage("../../assets/palu2.png");
 	soundFormats("mp3", "ogg");
 	bsGame = loadSound("../../assets/BGM");
 	bsPukul = loadSound("../../assets/Pukul2");
@@ -22,6 +19,9 @@ function preload() {
 
 function setup() {
 	createCanvas(900, 600);
+	tanah = loadImage("../../assets/tanah.png");
+	tikus = loadImage("../../assets/tikus.png");
+	palu = loadImage("../../assets/palu2.png");
 	imageMode(CENTER);
 	bsGame.loop();
 	setLevel();
