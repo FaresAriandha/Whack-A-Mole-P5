@@ -13,9 +13,10 @@ function preload() {
 	tanah = loadImage("../../assets/tanah.png");
 	tikus = loadImage("../../assets/tikus.png");
 	palu = loadImage("../../assets/palu2.png");
-	bsGame = loadSound("../../assets/BGM.mp3");
-	bsPukul = loadSound("../../assets/Pukul2.mp3");
-	bsClick = loadSound("../../assets/Tick.mp3");
+	soundFormats("mp3", "ogg");
+	bsGame = loadSound("../../assets/BGM");
+	bsPukul = loadSound("../../assets/Pukul2");
+	bsClick = loadSound("../../assets/Tick");
 	// bsPukul.speed(2.0);
 }
 
