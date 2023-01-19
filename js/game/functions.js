@@ -15,7 +15,7 @@ let shapeColor = "#D3A384",
 	txtColor = "#e3e1e1",
 	txtHoverColor = "255";
 let level, isClick, music, timePlay;
-let intervalTime;
+let intervalTime, aboutUs;
 
 function mainHome() {
 	background(bgColor);
@@ -52,6 +52,28 @@ function mainHome() {
 		22,
 		4
 	);
+	componentButton(
+		xCenter,
+		yCenter + 100,
+		150,
+		60,
+		5,
+		shapeColor,
+		shapeHoverColor,
+		15
+	);
+	componentText(
+		"About Us",
+		xCenter,
+		yCenter + 100,
+		txtColor,
+		txtHoverColor,
+		22,
+		4
+	);
+	if (aboutUs == true) {
+		aboutUS();
+	}
 }
 
 function mainSetting() {
@@ -317,6 +339,59 @@ function setLevel() {
 	isClick = false;
 }
 
+function aboutUS() {
+	fill(255);
+	stroke(0);
+	strokeWeight(5);
+	rect(xCenter, yCenter, 700, 500, 20);
+	componentText("About Game", xCenter, 122, 0, 0, 40, 0);
+	componentText("About Game", xCenter, 120, "#EDBC9B", "#EDBC9B", 40, 0);
+	componentText(
+		"Whack A Mole adalah game yang dimainkan dengan cara",
+		xCenter,
+		172,
+		0,
+		0,
+		18,
+		0
+	);
+	componentText(
+		"memukul tikus tanah yang muncul dari lubang tertentu.",
+		xCenter,
+		192,
+		0,
+		0,
+		18,
+		0
+	);
+	componentText(
+		"Game ini dibuat dengan menggunakan processing dan p5.js",
+		xCenter,
+		222,
+		0,
+		0,
+		18,
+		0
+	);
+	// My Team
+	componentText("Kelompok 7", xCenter, 272, 0, 0, 25, 0);
+	componentText(
+		"Alfares Ariandha Nurdin (2107411020)",
+		xCenter,
+		322,
+		0,
+		0,
+		25,
+		0
+	);
+	componentText("Chaesa Adella Rahma (2107411003)", xCenter, 352, 0, 0, 25, 0);
+	componentText("Lisna Agustin (2107411017)", xCenter, 382, 0, 0, 25, 0);
+	componentText("Gilang Rianto Utomo (2107411029)", xCenter, 412, 0, 0, 25, 0);
+
+	componentButton(xCenter + 300, 112, 50, 50, 5, 240, 240, 15);
+	componentText("❌", xCenter + 300, 112, txtColor, txtHoverColor, 22, 4);
+}
+
 function mouseClicked() {
 	if (txtIsHover != "") {
 		bsClick.play();
@@ -335,6 +410,8 @@ function mouseClicked() {
 			break;
 		case "Back":
 		case "Exit":
+		case "❌":
+			aboutUs = false;
 			namePage = "mainHome";
 			break;
 		case "Change Level":
@@ -344,6 +421,10 @@ function mouseClicked() {
 		case "Music SFX":
 			isClick = true;
 			setMusic();
+			break;
+		case "About Us":
+			isClick = true;
+			aboutUs = true;
 			break;
 		default:
 			txtIsHover = "";

@@ -46,5 +46,6 @@ function draw() {
 		default:
 			break;
 	}
+	// aboutUS();
 	// mainPlay();
 }

@@ -5,10 +5,10 @@ int tanahPositionX = tikusPositionX;
 int tikusPositionY = 90; 
 int tanahPositionY = tikusPositionY;
 int randomNumberBefore, timePlay = 11;
-Boolean finish = false, a, isClick = false;
+Boolean finish = false, a, isClick = false, aboutUs = false;
 int skor = 0, waktuMain = 10000, waktuTunggu, countDown, startTime;
-color shapeColor = #636362,
-  shapeHoverColor = #000000,
+color shapeColor = #D3A384,
+  shapeHoverColor = #BA8B6D,
   TxtColor = #e3e1e1,
   txtHoverColor = 255;
 Tikus mRandom; 
@@ -23,6 +23,11 @@ void mainHome() {
   componentText("Play", xCenter - 100, yCenter + 15, TxtColor, txtHoverColor, 28, 5);
   componentButton(xCenter + 100,yCenter,150,60,5,shapeColor,shapeHoverColor,15);
   componentText("Settings",xCenter + 100,yCenter + 15,TxtColor,txtHoverColor,28,5);
+  componentButton(xCenter,yCenter + 100,150,60,5,shapeColor,shapeHoverColor,15);
+  componentText("About Us",xCenter,yCenter + 115,TxtColor,txtHoverColor,28,5);
+  if (aboutUs == true) {
+    aboutUS();
+  }
 }
 
 void mainSetting() {
@@ -34,14 +39,14 @@ void mainSetting() {
   // Set Level
   componentButton(xCenter - 120, yCenter - 30,180,60,5, shapeColor, shapeHoverColor, 18);
   componentText("Change Level",xCenter - 120,yCenter - 15,TxtColor,txtHoverColor,28,4);
-  fill(shapeHoverColor);
+  fill(255);
   rect(xCenter - 120, yCenter - 110, 180, 50, 7);
   componentText(level, xCenter - 120, yCenter - 95, 0, 0, 25, 4);
   
   // Set Sound
   componentButton(xCenter + 120,yCenter - 30,180,60,5,shapeColor,shapeHoverColor,18);
   componentText("Music SFX",xCenter + 120,yCenter - 15,TxtColor,txtHoverColor,28,4);
-  fill(shapeHoverColor);
+  fill(255);
   rect(xCenter + 120, yCenter - 110, 180, 50, 7);
   componentText(music, xCenter + 120, yCenter - 95, 0, 0, 25, 4);
   
@@ -69,6 +74,7 @@ void mainPlay() {
 
   // Lahan Tanahnya
   stroke(0);
+  strokeWeight(5);
   rectMode(CENTER);
   fill(#964B00);
   rect(xCenter, yCenter, wLapangan, hLapangan);
@@ -95,6 +101,59 @@ void mainPlay() {
     upAndDownShow();
   }
   renderHole();
+}
+
+void aboutUS() {
+  fill(255);
+  stroke(0);
+  strokeWeight(5);
+  rect(xCenter, yCenter, 700, 500, 20);
+  componentText("About Game", xCenter, 202, 0, 0, 40, 0);
+  componentText("About Game", xCenter, 200, #EDBC9B, #EDBC9B, 40, 0);
+  componentText(
+    "Whack A Mole adalah game yang dimainkan dengan cara",
+    xCenter,
+    252,
+    0,
+    0,
+    18,
+    0
+  );
+  componentText(
+    "memukul tikus tanah yang muncul dari lubang tertentu.",
+    xCenter,
+    272,
+    0,
+    0,
+    18,
+    0
+  );
+  componentText(
+    "Game ini dibuat dengan menggunakan processing dan p5.js",
+    xCenter,
+    302,
+    0,
+    0,
+    18,
+    0
+  );
+  // My Team
+  componentText("Kelompok 7", xCenter, 362, 0, 0, 30, 0);
+  componentText(
+    "Alfares Ariandha Nurdin (2107411020)",
+    xCenter,
+    402,
+    0,
+    0,
+    25,
+    0
+  );
+  componentText("Chaesa Adella Rahma (2107411003)", xCenter, 432, 0, 0, 25, 0);
+  componentText("Lisna Agustin (2107411017)", xCenter, 462, 0, 0, 25, 0);
+  componentText("Gilang Rianto Utomo (2107411029)", xCenter, 492, 0, 0, 25, 0);
+
+  componentButton(xCenter + 300, 162, 50, 50, 5, 240, 240, 15);
+  componentText("X", xCenter + 300, 177, #FF0000, #FF0000, 22, 4);
 }
 
 void renderHole() {
@@ -233,6 +292,8 @@ void mouseClicked() {
       break;
     case "Back":
     case "Exit":
+    case "X":
+      aboutUs = false;
       namePage = "mainHome";
       break;
     case "Change Level":
@@ -242,6 +303,10 @@ void mouseClicked() {
     case "Music SFX":
       isClick = true;
       setMusic();
+      break;
+    case "About Us":
+      isClick = true;
+      aboutUs = true;
       break;
     default:
       txtIsHover = "";
@@ -281,7 +346,7 @@ void gamePlay() {
 void rundownBeforePlay() {
   noStroke();
   rectMode(CENTER);
-  fill(0, 0, 255);
+  fill(bgColor);
   rect(xCenter, yCenter, width, height);
   fill(0);
   componentText(str(waktuTunggu), xCenter, yCenter, #000000, #000000, 40, 5);
